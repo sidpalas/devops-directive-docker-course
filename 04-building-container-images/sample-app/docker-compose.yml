@@ -1,0 +1,38 @@
+services:
+  client-react:
+    build:
+      context: ./client-react
+    # Could remove...
+    depends_on:
+      - api-node
+      - api-golang
+    ports:
+      - 5173:5173
+  api-node:
+    build:
+      context: ./api-node
+    depends_on:
+      - db
+    environment:
+      - PGUSER=postgres
+      - PGHOST=db
+      - PGPASSWORD=foobarbaz
+      - PGDATABASE=postgres
+      - PGPORT=5432
+    ports:
+      - 3000:3000
+  api-golang:
+    build:
+      context: ./api-golang
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
+    ports:
+      - 8080:8080
+  db:
+    image: postgres:15.1-alpine
+    environment:
+      - POSTGRES_PASSWORD=foobarbaz
+    ports:
+      - 5432:5432
