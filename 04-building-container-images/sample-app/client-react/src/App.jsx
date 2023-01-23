@@ -37,8 +37,8 @@ export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <h1>Hey Team! 👋</h1>
-      <Example api="http://localhost:8080/"/>
-      <Example api="http://localhost:3000/"/>
+      <Example api="/api/golang"/>
+      <Example api="/api/node"/>
     </QueryClientProvider>
   );
 }
