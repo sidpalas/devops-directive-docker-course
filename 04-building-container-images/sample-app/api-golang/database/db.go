@@ -22,7 +22,7 @@ func InitDB(connString string) error {
 	return nil
 }
 
-func GetTime(ctx *gin.Context) {
+func GetTime(ctx *gin.Context) time.Time {
 	var tm time.Time
 
 	err := conn.QueryRow(ctx, "SELECT NOW() as now;").Scan(&tm)
@@ -30,6 +30,5 @@ func GetTime(ctx *gin.Context) {
 		fmt.Fprintf(os.Stderr, "QueryRow failed: %v\n", err)
 		os.Exit(1)
 	}
-
-	fmt.Println(tm)
+	return tm
 }

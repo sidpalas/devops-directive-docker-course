@@ -14,7 +14,6 @@ const getDateTime = async () => {
   const client = await pool.connect();
   try {
     const res = await client.query('SELECT NOW() as now;');
-    console.log(res.rows[0]);
     return res.rows[0];
   } catch (err) {
     console.log(err.stack);
