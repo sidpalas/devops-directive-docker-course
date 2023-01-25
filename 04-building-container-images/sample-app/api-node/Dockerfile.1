@@ -1,0 +1,9 @@
+# Pin specific version
+# Use alpine for reduced image size
+FROM node:19.4-alpine
+
+COPY . .
+
+RUN npm install
+
+CMD [ "node", "index.js" ]

@@ -2,15 +2,21 @@ services:
   client-react:
     build:
       context: ./client-react
-    # Could remove...
-    depends_on:
-      - api-node
-      - api-golang
+      dockerfile: Dockerfile
     ports:
       - 5173:5173
+  client-react-nginx:
+    build:
+      context: ./client-react
+      dockerfile: Dockerfile.3
+    init: true
+    ports:
+      - 5174:80
   api-node:
     build:
       context: ./api-node
+      dockerfile: Dockerfile.7
+    init: true
     depends_on:
       - db
     environment:
@@ -24,6 +30,8 @@ services:
   api-golang:
     build:
       context: ./api-golang
+      dockerfile: Dockerfile.6
+    init: true
     depends_on:
       - db
     environment:

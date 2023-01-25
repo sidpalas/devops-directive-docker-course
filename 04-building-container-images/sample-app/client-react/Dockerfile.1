@@ -1,0 +1,7 @@
+FROM node:19.4-bullseye
+
+COPY . .
+
+RUN npm install
+
+CMD ["npm", "run", "dev"]

@@ -1,0 +1,12 @@
+# Pin specific version
+# Use alpine for reduced image size
+FROM node:19.4-alpine
+
+# Specify working directory other than /
+WORKDIR /usr/src/app
+
+COPY . .
+
+RUN npm install
+
+CMD [ "node", "index.js" ]
