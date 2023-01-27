@@ -2,7 +2,7 @@ services:
   client-react:
     build:
       context: ../05-example-web-application/client-react/
-      dockerfile: ../../06-building-container-images/client-react/Dockerfile
+      dockerfile: ../../06-building-container-images/client-react/Dockerfile.2
     ports:
       - 5173:5173
     volumes:
