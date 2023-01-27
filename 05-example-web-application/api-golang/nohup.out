@@ -1,0 +1,94 @@
+2023/01/27 08:34:41 DATABASE CONNECTED 🥇
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /                         --> main.main.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+[GIN-debug] Listening and serving HTTP on :8080
+QueryRow failed: failed to connect to `host=db user=postgres database=postgres`: hostname resolving error (lookup db: no such host)
+exit status 1
+2023/01/27 08:36:16 DATABASE CONNECTED 🥇
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /                         --> main.main.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2023/01/27 - 08:36:20 | 200 |   76.361836ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:36:20 | 404 |         551ns |             ::1 | GET      "/favicon.ico"
+[GIN] 2023/01/27 - 08:36:20 | 200 |    2.305566ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:36:21 | 404 |         584ns |             ::1 | GET      "/favicon.ico"
+[GIN] 2023/01/27 - 08:36:21 | 200 |    2.258435ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:36:21 | 404 |         494ns |             ::1 | GET      "/favicon.ico"
+[GIN] 2023/01/27 - 08:36:21 | 200 |    1.808336ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:36:21 | 404 |         530ns |             ::1 | GET      "/favicon.ico"
+[GIN] 2023/01/27 - 08:36:21 | 200 |    1.571416ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:36:21 | 404 |         599ns |             ::1 | GET      "/favicon.ico"
+[GIN] 2023/01/27 - 08:36:21 | 200 |    1.787527ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:36:21 | 404 |         657ns |             ::1 | GET      "/favicon.ico"
+2023/01/27 08:36:24 DATABASE CONNECTED 🥇
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /                         --> main.main.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN-debug] [ERROR] listen tcp :8080: bind: address already in use
+[GIN] 2023/01/27 - 08:36:28 | 200 |    1.946844ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:36:28 | 404 |         828ns |             ::1 | GET      "/favicon.ico"
+[GIN] 2023/01/27 - 08:36:28 | 200 |     1.60934ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:36:28 | 404 |         537ns |             ::1 | GET      "/favicon.ico"
+[GIN] 2023/01/27 - 08:36:29 | 200 |     1.96418ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:36:29 | 404 |         519ns |             ::1 | GET      "/favicon.ico"
+[GIN] 2023/01/27 - 08:36:29 | 200 |    1.956822ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:36:29 | 404 |         554ns |             ::1 | GET      "/favicon.ico"
+2023/01/27 08:39:10 DATABASE CONNECTED 🥇
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /                         --> main.main.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN-debug] [ERROR] listen tcp :8080: bind: address already in use
+2023/01/27 08:39:21 DATABASE CONNECTED 🥇
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /                         --> main.main.func1 (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Environment variable PORT is undefined. Using port :8080 by default
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN-debug] [ERROR] listen tcp :8080: bind: address already in use
+[GIN] 2023/01/27 - 08:39:29 | 200 |    2.692438ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:39:30 | 200 |    2.633877ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:39:31 | 200 |    2.567795ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:39:31 | 200 |    3.106938ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:39:32 | 200 |    3.875721ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:39:32 | 200 |    2.054595ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:39:32 | 200 |    3.713489ms |             ::1 | GET      "/"
+[GIN] 2023/01/27 - 08:39:32 | 200 |    1.914952ms |             ::1 | GET      "/"
+signal: terminated

@@ -1,21 +1,23 @@
 services:
   client-react:
     build:
-      context: ./client-react
-      dockerfile: Dockerfile
+      context: ../05-example-web-application/client-react/
+      dockerfile: ../../06-building-container-images/client-react/Dockerfile
     ports:
       - 5173:5173
+    volumes:
+    - ${PWD}/client-react/vite.config.js:/usr/src/app/vite.config.js
   client-react-nginx:
     build:
-      context: ./client-react
-      dockerfile: Dockerfile.3
+      context: ../05-example-web-application/client-react/
+      dockerfile: ../../06-building-container-images/client-react/Dockerfile.3
     init: true
     ports:
       - 5174:80
   api-node:
     build:
-      context: ./api-node
-      dockerfile: Dockerfile.7
+      context: ../05-example-web-application/api-node/
+      dockerfile: ../../06-building-container-images/api-node/Dockerfile.7
     init: true
     depends_on:
       - db
@@ -29,8 +31,8 @@ services:
       - 3000:3000
   api-golang:
     build:
-      context: ./api-golang
-      dockerfile: Dockerfile.6
+      context: ../05-example-web-application/api-golang/
+      dockerfile: ../../06-building-container-images/api-golang/Dockerfile.6
     init: true
     depends_on:
       - db
