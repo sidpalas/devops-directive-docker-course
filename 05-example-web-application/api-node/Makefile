@@ -1,10 +1,6 @@
 .PHONY: run-local
 run-local:
-	PGUSER=postgres \
-    PGHOST=localhost \
-    PGPASSWORD=foobarbaz \
-    PGDATABASE=postgres \
-    PGPORT=5432 \
+	DATABASE_URL=postgres://postgres:foobarbaz@localhost:5432/postgres \
     node ./src/index.js
 
 .PHONY: build-naive

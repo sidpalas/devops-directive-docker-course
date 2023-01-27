@@ -22,11 +22,7 @@ services:
     depends_on:
       - db
     environment:
-      - PGUSER=postgres
-      - PGHOST=db
-      - PGPASSWORD=foobarbaz
-      - PGDATABASE=postgres
-      - PGPORT=5432
+      - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
     ports:
       - 3000:3000
   api-golang:

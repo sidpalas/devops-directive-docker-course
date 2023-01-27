@@ -1,6 +1,8 @@
 const { Pool } = require('pg');
 
-const pool = new Pool();
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
 
 // the pool will emit an error on behalf of any idle clients
 // it contains if a backend error or network partition happens
