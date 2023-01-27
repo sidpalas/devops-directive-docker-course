@@ -1,16 +1,10 @@
-Docker Desktop: https://docs.docker.com/get-docker/
+# Sample web application
 
-Docker Engine: https://get.docker.com/ 
+![](./images/app-screenshot.png)
 
-Hello World:
-```
-docker run docker/whalesay cowsay "Hey Team! 👋"
-```
+## Minimal 3 tier web application
+- React frontend
+- Node JS and Golang APIs
+- Postgres Database
 
-Run Postgres:
-```
-docker run \
-  --env POSTGRES_PASSWORD=foobarbaz \
-  --publish 5432:5432 \
-  postgres:15.1-alpine
-```
+![](./images/tech-stack.png)
