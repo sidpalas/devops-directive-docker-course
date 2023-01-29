@@ -336,23 +336,23 @@ docker run -it --rm debian:bullseye-slim
 docker run -it --rm alpine:3.17.1
 
 # https://hub.docker.com/_/busybox
-docker run -it busybox:1.36.0 # small image with lots of useful utilities
+docker run -it --rm busybox:1.36.0 # small image with lots of useful utilities
 ```
 
 
 #### ii. Programming runtimes:
 ```bash
 # https://hub.docker.com/_/python
-docker run -it python:3.11.1
+docker run -it --rm python:3.11.1
 
 # https://hub.docker.com/_/node
-docker run -it node:18.13.0
+docker run -it --rm node:18.13.0
 
 # https://hub.docker.com/_/php
-
+docker run -it --rm php:8.1
 
 # https://hub.docker.com/_/ruby
-
+docker run -it --rm ruby:alpine3.17
 ```
 
 ### C. CLI Utilities
