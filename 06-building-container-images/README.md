@@ -34,12 +34,11 @@ All of these techniques are leveraged across the example applications in this re
 
 There are some additional features of Dockerfiles that are not shown in the example applications but are worth knowing about. These are highlighted in `Dockerfile.sample` and the corresponding build / run commands in the `Makefile`
 
-1) **Parser directives:**
-2) **ARG:**
-3) **Parser directives:**
-4) **Mounting secrets:**
-5) **ENTRYPOINT + CMD:**
+1) **Parser directives:** Specify the particular Dockefile syntax being used or modify the escape character.
+2) **ARG:** Enables setting variables at build time that do not persist in the final image (but can be seen in the image metadata).
+3) **Heredocs syntax:** Enables multi-line commands within a Dockerfile.
+4) **Mounting secrets:** Allows for providing sensitive credentials required at build time while keeping them out of the final image.
+5) **ENTRYPOINT + CMD:** The interaction between `ENTRYPOINT` and `CMD` can be confusing. Depending on whether arguments are provided at runtime one or more will be used. See the examples by running `make run-sample-entrypoint-cmd`.
+6) **buildx (multi-architecture images):** You can use a feature called `buildx` to create images for multiple architectures from a single Dockerfile. This video goes into depth on that topic: https://www.youtube.com/watch?v=hWSHtHasJUI
 
-## Beyond the scope of this course:
 
-1) **buildx (multi-architecture images):** You can use a feature called `buildx` to create images for multiple architectures from a single Dockerfile. This video goes into depth on that topic: https://www.youtube.com/watch?v=hWSHtHasJUI
