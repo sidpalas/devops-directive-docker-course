@@ -1,5 +1,5 @@
 services:
-  client-react:
+  client-react-vite:
     build:
       context: ../05-example-web-application/client-react/
       dockerfile: ../../06-building-container-images/client-react/Dockerfile.3
@@ -11,7 +11,7 @@ services:
   client-react-nginx:
     build:
       context: ../05-example-web-application/client-react/
-      dockerfile: ../../06-building-container-images/client-react/Dockerfile.4
+      dockerfile: ../../06-building-container-images/client-react/Dockerfile.5
     init: true
     ports:
       - 5174:80
