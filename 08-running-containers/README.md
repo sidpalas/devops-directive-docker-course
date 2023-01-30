@@ -19,7 +19,7 @@ Options everyone should know:
 --tty, -t
 ```
 
-Less commonly used by worth knowing:
+Less commonly used options, but worth knowing about:
 
 ```bash
 --cap-add, --cap-drop
