@@ -1,9 +1,9 @@
-API_NODE_PATH:=../../05-example-web-application/api-node/
+API_NODE_PATH:=../../05-example-web-application/client-react/
 
 N?=0
 .PHONY: build-N
 build-N:
-	docker build --file ./Dockerfile.$(N) -t api-node:$(N) ${API_NODE_PATH}
+	docker build --file ./Dockerfile.$(N) -t client-react:$(N) ${API_NODE_PATH}
 
 .PHONY: build-all
 build-all:

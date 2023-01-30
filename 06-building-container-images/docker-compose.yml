@@ -2,18 +2,20 @@ services:
   client-react:
     build:
       context: ../05-example-web-application/client-react/
-      dockerfile: ../../06-building-container-images/client-react/Dockerfile.2
+      dockerfile: ../../06-building-container-images/client-react/Dockerfile.3
     ports:
       - 5173:5173
     volumes:
     - ${PWD}/client-react/vite.config.js:/usr/src/app/vite.config.js
+    restart: unless-stopped
   client-react-nginx:
     build:
       context: ../05-example-web-application/client-react/
-      dockerfile: ../../06-building-container-images/client-react/Dockerfile.3
+      dockerfile: ../../06-building-container-images/client-react/Dockerfile.4
     init: true
     ports:
       - 5174:80
+    restart: unless-stopped
   api-node:
     build:
       context: ../05-example-web-application/api-node/
@@ -25,6 +27,7 @@ services:
       - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
     ports:
       - 3000:3000
+    restart: unless-stopped
   api-golang:
     build:
       context: ../05-example-web-application/api-golang/
@@ -36,6 +39,7 @@ services:
       - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
     ports:
       - 8080:8080
+    restart: unless-stopped
   db:
     image: postgres:15.1-alpine
     environment:
