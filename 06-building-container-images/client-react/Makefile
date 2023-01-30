@@ -7,6 +7,6 @@ build-N:
 
 .PHONY: build-all
 build-all:
-	for number in 0 1 2 3 ; do \
+	for number in 0 1 2 3 4 5; do \
 			N=$$number $(MAKE) build-N; \
 	done

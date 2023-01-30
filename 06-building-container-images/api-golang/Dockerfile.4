@@ -13,7 +13,7 @@ RUN go mod download
 COPY . .
 
 # Compile application during build rather than at runtime
-# Add -w and -s flags to 
+# Add flags to statically link binary
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -o api-golang

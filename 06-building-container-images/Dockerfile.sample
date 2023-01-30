@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1
+# syntax=docker/dockerfile:1.5
 # escape=\
 # ^ OPTIONAL "directives" (must be at top if used)
 
@@ -14,12 +14,21 @@ FROM node:${BASE_IMAGE_TAG}
 RUN echo "Hey Team 👋 (shell form)"
 RUN ["echo", "Hey Team 👋 (exec form)"]
 
+# Heredocs allow for specifying multiple commands to 
+# be run within a single step, across multiple lines
+# without lots of && and \
+RUN <<EOF
+apt update
+apt install iputils-ping -y
+EOF
+
 # --mount allows for mounting additional files
 # into the build context
 # RUN --mount=type=bind ...
 # RUN --mount=type=cache ...
-# RUN --mount=type=secret ...
 # RUN --mount=type=ssh ...
+RUN --mount=type=secret,id=secret.txt,dst=/container-secret.txt \
+  echo "Run the command that requires access to the secret here"
 
 # Available only at build time
 # (Still in image metadata though...)
