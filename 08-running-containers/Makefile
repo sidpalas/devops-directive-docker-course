@@ -43,6 +43,7 @@ docker-run-all:
 	docker run -d \
 		--name db \
 		-e POSTGRES_PASSWORD=foobarbaz \
+		-v pgdata:/var/lib/postgresql/data \
 		-p 5432:5432 \
 		--restart unless-stopped \
 		postgres:15.1-alpine
