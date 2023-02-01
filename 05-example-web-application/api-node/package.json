@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "debug": "nodemon --inspect ./src/index.js",
+    "debug-docker": "nodemon --inspect=0.0.0.0:9229 ./src/index.js",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "pg": "^8.8.0"
   },
   "devDependencies": {
+    "jest": "^29.4.1",
     "nodemon": "^2.0.20"
   }
 }

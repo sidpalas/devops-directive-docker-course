@@ -1,9 +1,9 @@
-import { useState } from 'react'
 import {
   QueryClient,
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import axios from "axios";
 
 import './App.css'
@@ -39,6 +39,7 @@ export function App() {
       <h1>Hey Team! 👋</h1>
       <Example api="/api/golang/"/>
       <Example api="/api/node/"/>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

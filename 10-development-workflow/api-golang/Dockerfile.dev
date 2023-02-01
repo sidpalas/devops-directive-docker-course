@@ -1,0 +1,22 @@
+# Pin specific version for stability
+# using  bullseye instead of alpine because of:
+##  runtime/cgo
+## cgo: C compiler "gcc" not found: exec: "gcc": executable file not found in $PATH
+FROM golang:1.19-bullseye
+
+WORKDIR /app 
+
+# Install air for hot reload
+RUN go install github.com/cosmtrek/air@latest
+
+# Install delve for debugging
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
+
+# Copy only files required to install dependencies (better layer caching)
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY . .
+
+CMD ["air", "-c", ".air.toml"]

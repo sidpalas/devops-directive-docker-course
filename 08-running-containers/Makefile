@@ -38,7 +38,7 @@ docker-run-all:
 	# Stop and remove all running containers to avoid name conflicts
 	$(MAKE) docker-stop
 
-	$(MAKE) docker-remove
+	$(MAKE) docker-rm
 
 	docker run -d \
 		--name db \
@@ -81,6 +81,7 @@ docker-run-all:
 		--link=api-golang \
 		client-react-ngnix
 
+.PHONY: docker-stop
 docker-stop:
 	-docker stop db
 	-docker stop api-node
@@ -88,7 +89,8 @@ docker-stop:
 	-docker stop client-react-vite
 	-docker stop client-react-nginx
 
-docker-remove:
+.PHONY: docker-rm
+docker-rm:
 	-docker container rm db
 	-docker container rm api-node
 	-docker container rm api-golang

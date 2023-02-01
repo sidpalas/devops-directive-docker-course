@@ -1,3 +1,6 @@
 **/node_modules
 *.un~
 *.json~
+
+.DS_Store
+**/tmp

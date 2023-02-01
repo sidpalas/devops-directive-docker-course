@@ -1,13 +1,4 @@
 services:
-  client-react-vite:
-    build:
-      context: ../05-example-web-application/client-react/
-      dockerfile: ../../06-building-container-images/client-react/Dockerfile.3
-    ports:
-      - 5173:5173
-    volumes:
-    - ${PWD}/client-react/vite.config.js:/usr/src/app/vite.config.js
-    restart: unless-stopped
   client-react-nginx:
     build:
       context: ../05-example-web-application/client-react/
