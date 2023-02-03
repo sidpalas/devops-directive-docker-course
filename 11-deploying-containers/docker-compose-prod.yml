@@ -1,0 +1,46 @@
+services:
+  client-react-nginx:
+    image: sidpalas/devops-directive-docker-course-client-react-nginx:5
+    networks:
+      - frontend
+    init: true
+    ports:
+      - 80:80
+    restart: unless-stopped
+  api-node:
+    image: sidpalas/devops-directive-docker-course-api-node:7
+    networks:
+      - frontend
+      - backend
+    init: true
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
+    restart: unless-stopped
+  api-golang:
+    image: sidpalas/devops-directive-docker-course-api-golang:6
+    networks:
+      - frontend
+      - backend
+    init: true
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
+    restart: unless-stopped
+  db:
+    image: postgres:15.1-alpine
+    networks:
+      - backend
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=foobarbaz
+
+volumes:
+  pgdata:
+
+networks:
+  frontend:
+  backend:
