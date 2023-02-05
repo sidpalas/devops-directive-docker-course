@@ -3,6 +3,9 @@ version: '3.7'
 services:
   client-react:
     image: sidpalas/devops-directive-docker-course-client-react-nginx:5
+    deploy:
+      mode: replicated
+      replicas: 2
     networks:
       - frontend
     ports:
@@ -15,6 +18,9 @@ services:
       start_period: 10s
   api-node:
     image: sidpalas/devops-directive-docker-course-api-node:8
+    deploy:
+      mode: replicated
+      replicas: 2
     environment:
       - DATABASE_URL_FILE=/run/secrets/database-url
     secrets:
@@ -32,6 +38,9 @@ services:
       start_period: 10s
   api-golang:
     image: sidpalas/devops-directive-docker-course-api-golang:7
+    deploy:
+      mode: replicated
+      replicas: 2
     networks:
       - frontend
       - backend
