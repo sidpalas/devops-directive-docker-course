@@ -1,0 +1,12 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+restartPolicyMaxRetries = 10
+restartPolicyType = "ON_FAILURE"
+
+# Also set env vars:
+# NODE_ENV=production
+# PORT=3000
+
+# Could also use our custom Dockerfile...
