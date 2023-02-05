@@ -11,7 +11,7 @@ build-N:
 
 .PHONY: build-all
 build-all:
-	for number in 0 1 2 3 4 5 6 ; do \
+	for number in 0 1 2 3 4 5 6 7; do \
 			N=$$number $(MAKE) build-N; \
 	done
 
@@ -21,6 +21,6 @@ push-N:
 
 .PHONY: push-all
 push-all:
-	for number in 0 1 2 3 4 5 6 ; do \
+	for number in 0 1 2 3 4 5 6 7; do \
 			N=$$number $(MAKE) push-N; \
 	done

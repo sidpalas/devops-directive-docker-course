@@ -7,8 +7,14 @@ services:
       - frontend
     ports:
       - 80:80
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
   api-node:
-    image: sidpalas/devops-directive-docker-course-api-node:7
+    image: sidpalas/devops-directive-docker-course-api-node:8
     environment:
       - DATABASE_URL_FILE=/run/secrets/database-url
     secrets:
@@ -18,8 +24,14 @@ services:
       - backend
     ports:
       - 3000:3000
+    healthcheck:
+      test: ["CMD", "node", "/usr/src/app/healthcheck.js"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
   api-golang:
-    image: sidpalas/devops-directive-docker-course-api-golang:6
+    image: sidpalas/devops-directive-docker-course-api-golang:7
     networks:
       - frontend
       - backend
@@ -29,6 +41,12 @@ services:
       - database-url
     ports:
       - 8080:8080
+    healthcheck:
+      test: ["CMD", "/healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
   db:
     image: postgres:15.1-alpine
     networks:
@@ -41,6 +59,11 @@ services:
       - POSTGRES_PASSWORD_FILE=/run/secrets/postgres-passwd
     secrets:
       - postgres-passwd
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   pgdata:

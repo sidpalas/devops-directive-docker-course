@@ -10,7 +10,7 @@ services:
   api-node:
     build:
       context: ../05-example-web-application/api-node/
-      dockerfile: ../../06-building-container-images/api-node/Dockerfile.7
+      dockerfile: ../../06-building-container-images/api-node/Dockerfile.8
     init: true
     depends_on:
       - db

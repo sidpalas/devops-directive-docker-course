@@ -42,5 +42,11 @@ func main() {
 			"now": tm,
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+
+	r.GET("/ping", func(c *gin.Context) {
+		tm = database.GetTime(c)
+		c.JSON(200, "pong")
+	})
+
+	r.Run() // listen and serve on 0.0.0.0:8080 (or "PORT" env var)
 }
