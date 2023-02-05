@@ -2,10 +2,12 @@ version: '3.7'
 
 services:
   client-react:
-    image: sidpalas/devops-directive-docker-course-client-react-nginx:5
+    image: sidpalas/devops-directive-docker-course-client-react-nginx:6
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
+      update_config:
+        order: start-first
     networks:
       - frontend
     ports:
@@ -20,7 +22,9 @@ services:
     image: sidpalas/devops-directive-docker-course-api-node:8
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 1
+      update_config:
+        order: start-first
     environment:
       - DATABASE_URL_FILE=/run/secrets/database-url
     secrets:
@@ -41,6 +45,8 @@ services:
     deploy:
       mode: replicated
       replicas: 2
+      update_config:
+        order: start-first
     networks:
       - frontend
       - backend
