@@ -4,7 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // setup the logger
 app.use(morgan('tiny'));
@@ -14,6 +14,10 @@ app.get('/', async (req, res) => {
   const response = dateTime;
   response.api = 'node';
   res.send(response);
+});
+
+app.get('/ping', async (_, res) => {
+  res.send('pong');
 });
 
 const server = app.listen(port, () => {

@@ -1,0 +1,94 @@
+version: '3.7'
+
+services:
+  client-react:
+    image: sidpalas/devops-directive-docker-course-client-react-nginx:6
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        order: start-first
+    networks:
+      - frontend
+    ports:
+      - 80:80
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  api-node:
+    image: sidpalas/devops-directive-docker-course-api-node:8
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        order: start-first
+    environment:
+      - DATABASE_URL_FILE=/run/secrets/database-url
+    secrets:
+      - database-url
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 3000:3000
+    healthcheck:
+      test: ["CMD", "node", "/usr/src/app/healthcheck.js"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  api-golang:
+    image: sidpalas/devops-directive-docker-course-api-golang:7
+    deploy:
+      mode: replicated
+      replicas: 2
+      update_config:
+        order: start-first
+    networks:
+      - frontend
+      - backend
+    environment:
+      - DATABASE_URL_FILE=/run/secrets/database-url
+    secrets:
+      - database-url
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "/healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  db:
+    image: postgres:15.1-alpine
+    networks:
+      - backend
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres-passwd
+    secrets:
+      - postgres-passwd
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
+
+networks:
+  frontend:
+  backend:
+
+secrets:
+  database-url:
+    external: true
+  postgres-passwd:
+    external: true

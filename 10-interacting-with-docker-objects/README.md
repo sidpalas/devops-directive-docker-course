@@ -10,6 +10,7 @@
 6) rm
 7) prune
 8) save
+9) docker scan <image> (snyk security scan, also show trivy)
 
 ## Containers
 

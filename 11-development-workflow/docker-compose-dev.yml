@@ -7,8 +7,10 @@ services:
       - 5173:5173
     volumes:
       - type: bind
-        source: ../05-example-web-application/client-react/src
-        target: /usr/src/app/src  
+        source: ../05-example-web-application/client-react/
+        target: /usr/src/app/
+      - type: volume
+        target: /usr/src/app/node_modules 
       - type: bind
         source: ../08-running-containers/client-react/vite.config.js
         target: /usr/src/app/vite.config.js
@@ -20,8 +22,10 @@ services:
       target: dev
     volumes:
       - type: bind
-        source: ../05-example-web-application/api-node/src/
-        target: /usr/src/app/src/
+        source: ../05-example-web-application/api-node/
+        target: /usr/src/app/
+      - type: volume
+        target: /usr/src/app/node_modules 
     init: true
     depends_on:
       - db

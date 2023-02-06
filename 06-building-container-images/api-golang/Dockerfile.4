@@ -16,6 +16,7 @@ COPY . .
 # Add flags to statically link binary
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
+  -tags netgo \
   -o api-golang
 
 # Use separate stage for deployable image
