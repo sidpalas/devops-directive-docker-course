@@ -28,7 +28,36 @@ Types of improvments:
 9) **Avoid assumptions:** Using commands like `EXPOSE <PORT>` make it clear to users how the image is intended to be used and avoids the need for them to make assumptions.
 10) **Use multi-stage builds where sensible:** For some situations, multi-stage builds can vastly reduce the size of the final image and improve build times. Learn about and use multi-stage builds where appropriate.
 
-All of these techniques are leveraged across the example applications in this repo.
+In general, these techniques impact some combination of (1) build speed, (2) image security, and (3) developer clarity. The following summarizes these impacts:
+
+```
+Legend:
+ 🔒 Security
+ 🏎️ Build Speed
+ 👁️ Clarity
+```
+- Pin specific versions [🔒 👁️]
+  - Base images (either major+minor OR SHA256 hash) [🔒 👁️]
+  - System Dependencies [🔒 👁️]
+  - Application Dependencies [🔒 👁️]
+- Use small + secure base images [🔒 🏎️]
+- Protect the layer cache [🏎️ 👁️]
+  - Order commands by frequency of change [🏎️]
+  - COPY dependency requirements file → install deps → copy remaining source code [🏎️]
+  - Use cache mounts [🏎️]
+  - Use COPY --link [🏎️]
+  - Combine steps that are always linked (use heredocs to improve tidiness) [🏎️ 👁️]
+- Be explicit [🔒 👁️]
+  - Set working directory with WORKDIR [👁️]
+  - Indicate standard port with EXPOSE [👁️]
+  - Set default environment variables with ENV [🔒 👁️]
+- Avoid unnecessary files [🔒 🏎️ 👁️]
+  - Use .dockerignore [🔒 🏎️ 👁️]
+  - COPY specific files [🔒 🏎️ 👁️]
+- Use non-root USER [🔒]
+- Install only production dependencies [🔒 🏎️ 👁️]
+- Avoid leaking sensitive information [🔒]
+- Leverage multi-stage builds [🔒 🏎️]
 
 ## Additional Features
 
