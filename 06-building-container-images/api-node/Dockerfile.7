@@ -30,7 +30,3 @@ COPY --chown=node:node ./src/ .
 EXPOSE 3000
 
 CMD [ "node", "index.js" ]
-
-# TODO: Use multi-stage with distroless image or chainguard image? 
-# https://github.com/GoogleContainerTools/distroless/blob/main/examples/nodejs/Dockerfile
-# https://edu.chainguard.dev/chainguard/chainguard-images/reference/node/overview/
