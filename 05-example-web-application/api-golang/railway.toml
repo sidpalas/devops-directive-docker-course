@@ -1,12 +1,10 @@
 [build]
-builder = "NIXPACKS"
+builder = "DOCKERFILE"
+dockerfilePath = "/05-example-web-application/api-golang/Dockerfile.railway"
 
 [deploy]
 restartPolicyMaxRetries = 10
 restartPolicyType = "ON_FAILURE"
 
 # Also set env vars:
-# GIN_MODE=RELEASE
 # PORT=8080
-
-# Could also use our custom Dockerfile...
