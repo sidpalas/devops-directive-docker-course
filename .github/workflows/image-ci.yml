@@ -22,6 +22,7 @@ jobs:
           images: |
             sidpalas/devops-directive-docker-course-api-node
           tags: |
+            type=raw,value=latest
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}
@@ -41,3 +42,13 @@ jobs:
           context: ./05-example-web-application/api-node/
           push: true
           tags: ${{ steps.meta.outputs.tags }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'sidpalas/devops-directive-docker-course-api-node:latest'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
