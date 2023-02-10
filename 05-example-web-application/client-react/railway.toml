@@ -7,5 +7,4 @@ restartPolicyMaxRetries = 10
 restartPolicyType = "ON_FAILURE"
 
 # Also set env vars:
-# RAILWAY_DOCKERFILE_PATH=/05-example-web-application/client-react/Dockerfile.railway
 # PORT=80
