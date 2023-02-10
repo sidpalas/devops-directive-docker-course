@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   client-react:
-    image: sidpalas/devops-directive-docker-course-client-react-nginx:6
+    image: sidpalas/devops-directive-docker-course-client-react-nginx:5
     deploy:
       mode: replicated
       replicas: 1
