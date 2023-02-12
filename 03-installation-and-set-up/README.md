@@ -10,7 +10,7 @@ Docker Engine: https://get.docker.com/
 
 ## Configuring Docker Desktop
 
-The default settings are likely find for getting started, but if you begin to run more intensive applications, you may want to adjust the resources available to Docker. This can be done within the settings panel in the GUI.
+The default settings are likely fine for getting started, but if you begin to run more intensive applications, you may want to adjust the resources available to Docker. This can be done within the settings panel in the GUI.
 
 ![](./readme-assets/docker-desktop-config.jpg)
 
