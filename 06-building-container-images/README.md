@@ -1,5 +1,19 @@
 # Building Container Images
 
+## Building the Dockerfiles in this Repo
+
+Each of the service subdirectories (./api-golang, ./api-node, ./client-react) contain a series of Dockerfiles (`Dockerfile.0` → `Dockerfile.N`) starting with the most simple naive approach, and improving them with each step.
+
+The corresponding Makefiles also have a `build-N` target which can be used by:
+
+```
+cd api-golang && N=4 make build-N # This would build Dockerfile.4 of the api-golang component
+```
+
+Each image in the sequence should still function, with the final (highest #) being the one we will actually deploy later in the course.
+
+---
+
 ## General Process
 
 Dockerfiles generally have steps that are similar to those you would use to get your application running on a server.
@@ -12,11 +26,10 @@ Dockerfiles generally have steps that are similar to those you would use to get 
 
 ***Note:** We can often jump right to #3 by choosing a base image that has the OS and language runtime preinstalled.*
 
-## Writing good Dockerfiles:
+## Writing Good Dockerfiles:
 
-For each of the components of the example application I have included a series of Dockerfiles (`Dockerfile.0` -> `Dockerfile.N`) starting with the most simple naive approach, and improving them with each step.
+Here are some of the techniques demonstrated in the Dockerfiles within this repo:
 
-Types of improvments:
 1) **Pinning a specific base image:** By specifying an image tag, you can avoid nasty surprises where the base image
 2) **Choosing a smaller base image:** There are often a variety of base images we can choose from. Choosing a smaller base image will usually reduce the size of your final image.
 3) **Choosing a more secure base image:** Like image size, we should consider the number of vulnerabilities in our base images and the attack surface area. Chaingaurd publishes a number of hardened images (https://www.chainguard.dev/chainguard-images).
@@ -68,6 +81,4 @@ There are some additional features of Dockerfiles that are not shown in the exam
 3) **Heredocs syntax:** Enables multi-line commands within a Dockerfile.
 4) **Mounting secrets:** Allows for providing sensitive credentials required at build time while keeping them out of the final image.
 5) **ENTRYPOINT + CMD:** The interaction between `ENTRYPOINT` and `CMD` can be confusing. Depending on whether arguments are provided at runtime one or more will be used. See the examples by running `make run-sample-entrypoint-cmd`.
-6) **buildx (multi-architecture images):** You can use a feature called `buildx` to create images for multiple architectures from a single Dockerfile. This video goes into depth on that topic: https://www.youtube.com/watch?v=hWSHtHasJUI
-
-
+6) **buildx (multi-architecture images):** You can use a feature called `buildx` to create images for multiple architectures from a single Dockerfile. This video goes into depth on that topic: https://www.youtube.com/watch?v=hWSHtHasJUI. The `make  build-multiarch` make target demonstrates using this feature (and the images can be seen here: https://hub.docker.com/r/sidpalas/multi-arch-test/tags).
