@@ -1,8 +1,11 @@
+DATABASE_URL:=postgres://postgres:foobarbaz@localhost:5432/postgres
+
 .PHONY: run-postgres
 run-postgres:
 	@echo Starting postgres container
 	-docker run \
 		-e POSTGRES_PASSWORD=foobarbaz \
+		-v pgdata:/var/lib/postgresql/data \
 		-p 5432:5432 \
 		postgres:15.1-alpine
 
@@ -10,18 +13,14 @@ run-postgres:
 run-api-node:
 	@echo Starting node api
 	cd api-node && \
-		PGUSER=postgres \
-    PGHOST=localhost \
-    PGPASSWORD=foobarbaz \
-    PGDATABASE=postgres \
-    PGPORT=5432 \
+		DATABASE_URL=${DATABASE_URL} \
 		npm run dev
 
 .PHONY: run-api-golang
 run-api-golang:
 	@echo Starting golang api
 	cd api-golang && \
-		DATABASE_URL=postgres://postgres:foobarbaz@localhost:5432/postgres \
+		DATABASE_URL=${DATABASE_URL} \
 		go run main.go
 
 .PHONY: run-client-react
