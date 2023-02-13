@@ -1,0 +1,13 @@
+# Overlay configuration to enable debuggers
+services:
+  api-node:
+    command: 
+      - "npm"
+      - "run"
+      - "test"
+  api-golang:
+    command: 
+      - "go"
+      - "test"
+      - "-v"
+      - "./..."
