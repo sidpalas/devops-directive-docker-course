@@ -1,7 +1,7 @@
 .PHONY: deploy-traefik
 deploy-traefik:
 	-helm repo add traefik https://traefik.github.io/charts
-	helm upgrade --install -n traefik --create-namespace -f traefik-values traefik traefik/traefik
+	helm upgrade --install -n traefik --create-namespace traefik traefik/traefik
 
 .PHONY: deploy-postgres
 deploy-postgres:
