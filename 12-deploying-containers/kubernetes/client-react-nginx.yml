@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-react-nginx
+  labels:
+    app: client-react-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-react-nginx
+  template:
+    metadata:
+      labels:
+        app: client-react-nginx
+    spec:
+      containers:
+      - image: sidpalas/devops-directive-docker-course-client-react-nginx:5
+        name: client-react-nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /ping
+            port: 80
+        resources:
+          limits:
+            memory: 100Mi
+          requests:
+            cpu: 50m
+            memory: 100Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          privileged: false
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: nginx-conf
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: nginx-conf
+        name: nginx-conf
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-conf
+data:
+  default.conf: |-
+    server {
+      listen 80;
+
+      location /ping {
+            access_log off;
+            add_header 'Content-Type' 'text/plain';
+            return 200 "pong";
+      }
+
+      location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        try_files $uri $uri/ /index.html =404;
+      }
+      
+      include /etc/nginx/extra-conf.d/*.conf;
+    }

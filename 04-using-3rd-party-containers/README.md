@@ -26,7 +26,7 @@
 
 When we create a container from a container image, everything in the image is treated as read-only, and there is a new layer overlayed on top that is read/write.
 
-![](./images/container-filesystem.jpg)
+![](./readme-assets/container-filesystem.jpg)
 
 ### A. Installing Dependencies:
 
@@ -106,7 +106,7 @@ The one exception to this rule is environment specific configuration (environmen
 
 Often, our applications produce data that we need to safely persist (e.g. database data, user uploaded data, etc...) even if the containers are destroyed and recreated. Luckily, Docker (and containers more generally) have a feature to handle this use case called `Volumes` and `mounts`!
 
-![](./images/volumes.jpg)
+![](./readme-assets/volumes.jpg)
 
 `Volumes` and `mounts` allow us to specify a location where data should persist beyond the lifecycle of a single container. The data can live in a location managed by Docker (`volume mount`), a location in your host filesystem (`bind mount`), or in memory (`tmpfs mount`, not pictured). 
 

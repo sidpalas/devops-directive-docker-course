@@ -1,25 +1,15 @@
-# Pin specific version for stability
-# Use alpine for reduced image size
 FROM node:19.4-alpine as dev
 
-# Specify working directory other than /
 WORKDIR /usr/src/app
 
-# Copy only files required to install
-# dependencies (better layer caching)
 COPY package*.json ./
 
-# Install only production dependencies
-# Use cache mount to speed up install of existing dependencies
 RUN --mount=type=cache,target=/usr/src/app/.npm \
   npm set cache /usr/src/app/.npm && \
   npm install
 
-# Copy remaining source code AFTER installing dependencies. 
-# Again, copy only the necessary files
 COPY . .
 
-# Indicate expected port
 EXPOSE 3000
 
 CMD [ "npm", "run", "dev" ]

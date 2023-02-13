@@ -1,5 +1,6 @@
 DEV_COMPOSE_FILE=docker-compose-dev.yml
 DEBUG_COMPOSE_FILE=docker-compose-debug.yml
+TEST_COMPOSE_FILE=docker-compose-test.yml
 
 ### DOCKER COMPOSE COMMANDS
 
@@ -26,14 +27,9 @@ compose-down:
 ###
 
 DOCKERCONTEXT_DIR:=../05-example-web-application/
-DOCKERFILE_DIR:=../10-development-workflow/
-
-.PHONY: docker-build-all
-docker-build-all:
-	docker build -t api-node -f ${DOCKERFILE_DIR}/api-node/Dockerfile.dev ${DOCKERCONTEXT_DIR}/api-node/
-	docker build -t api-golang -f ${DOCKERFILE_DIR}/api-golang/Dockerfile.dev ${DOCKERCONTEXT_DIR}/api-golang/
+DOCKERFILE_DIR:=../11-development-workflow/
 
 .PHONY: run-tests
 run-tests:
-	docker run -t api-golang go test -v ./...
-	docker run -it api-node npm run test
+	docker compose -f $(DEV_COMPOSE_FILE) -f $(TEST_COMPOSE_FILE) run --build api-golang
+	docker compose -f $(DEV_COMPOSE_FILE) -f $(TEST_COMPOSE_FILE) run --build api-node

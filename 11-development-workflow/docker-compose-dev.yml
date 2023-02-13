@@ -18,7 +18,7 @@ services:
   api-node:
     build:
       context: ../05-example-web-application/api-node/
-      dockerfile: ../../10-development-workflow/api-node/Dockerfile.dev
+      dockerfile: ../../11-development-workflow/api-node/Dockerfile.dev
       target: dev
     volumes:
       - type: bind
@@ -37,7 +37,7 @@ services:
   api-golang:
     build:
       context: ../05-example-web-application/api-golang/
-      dockerfile: ../../10-development-workflow/api-golang/Dockerfile.dev
+      dockerfile: ../../11-development-workflow/api-golang/Dockerfile.dev
     volumes:
       - type: bind
         source: ../05-example-web-application/api-golang/
