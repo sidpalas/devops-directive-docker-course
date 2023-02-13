@@ -15,21 +15,21 @@ compose-down:
 
 ### DOCKER SWARM
 
-CIVO_SSH:="ssh://ubuntu@212.2.244.220"
+DOCKER_HOST:="ssh://ubuntu@212.2.244.220"
 
 .PHONY: swarm-init
 swarm-init:
-	DOCKER_HOST=${CIVO_SSH} docker swarm init
+	DOCKER_HOST=${DOCKER_HOST} docker swarm init
 
 .PHONY: swarm-deploy-stack
 swarm-deploy-stack:
-	DOCKER_HOST=${CIVO_SSH} docker stack deploy -c docker-swarm.yml example-app
+	DOCKER_HOST=${DOCKER_HOST} docker stack deploy -c docker-swarm.yml example-app
 
 .PHONY: swarm-remove-stack
 swarm-remove-stack:
-	DOCKER_HOST=${CIVO_SSH} docker stack rm example-app
+	DOCKER_HOST=${DOCKER_HOST} docker stack rm example-app
 
 .PHONY: create-secrets
 create-secrets:
-	echo -n "foobarbaz" | DOCKER_HOST=${CIVO_SSH} docker secret create postgres-passwd -
-	echo -n "postgres://postgres:foobarbaz@db:5432/postgres" | DOCKER_HOST=${CIVO_SSH} docker secret create database-url -
+	echo -n "foobarbaz" | DOCKER_HOST=${DOCKER_HOST} docker secret create postgres-passwd -
+	echo -n "postgres://postgres:foobarbaz@db:5432/postgres" | DOCKER_HOST=${DOCKER_HOST} docker secret create database-url -

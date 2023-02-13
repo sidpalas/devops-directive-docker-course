@@ -3,11 +3,6 @@ version: '3.7'
 services:
   client-react-nginx:
     image: sidpalas/devops-directive-docker-course-client-react-nginx:5
-    deploy:
-      mode: replicated
-      replicas: 1
-      update_config:
-        order: start-first
     networks:
       - frontend
     ports:
@@ -22,11 +17,6 @@ services:
   api-node:
     image: sidpalas/devops-directive-docker-course-api-node:8
     read_only: true
-    deploy:
-      mode: replicated
-      replicas: 1
-      update_config:
-        order: start-first
     networks:
       - frontend
       - backend
@@ -47,11 +37,6 @@ services:
   api-golang:
     image: sidpalas/devops-directive-docker-course-api-golang:7
     read_only: true
-    deploy:
-      mode: replicated
-      replicas: 1
-      update_config:
-        order: start-first
     networks:
       - frontend
       - backend
