@@ -1,9 +1,15 @@
 # Interacting with Containers and Other Docker Objects
 
+Familiarize yourself with the docker command line!
+
+You should:
+1) Use the documentation here: https://docs.docker.com/engine/reference/commandline/cli/
+2) Use the `--help` flag (e.g. `docker build --help`) to get more info about each command.
+
 ## Images
 
 1) ls
-2) build
+2) build (https://docs.docker.com/engine/reference/commandline/build/)
 3) tag
 4) pull
 5) push
@@ -34,3 +40,13 @@
 3) inspect
 4) rm
 5) prune
+
+## Networks
+
+1) ls
+2) create
+3) inspect
+4) connect
+5) disconnect
+6) rm
+7) prune
