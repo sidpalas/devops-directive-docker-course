@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  client-react:
+  client-react-nginx:
     image: sidpalas/devops-directive-docker-course-client-react-nginx:5
     deploy:
       mode: replicated
@@ -20,6 +20,7 @@ services:
       start_period: 10s
   api-node:
     image: sidpalas/devops-directive-docker-course-api-node:8
+    read_only: true
     deploy:
       mode: replicated
       replicas: 1
@@ -42,6 +43,7 @@ services:
       start_period: 10s
   api-golang:
     image: sidpalas/devops-directive-docker-course-api-golang:7
+    read_only: true
     deploy:
       mode: replicated
       replicas: 2
@@ -50,6 +52,7 @@ services:
     networks:
       - frontend
       - backend
+    init: true
     environment:
       - DATABASE_URL_FILE=/run/secrets/database-url
     secrets:
@@ -71,6 +74,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
+      - PGUSER=postgres
       - POSTGRES_PASSWORD_FILE=/run/secrets/postgres-passwd
     secrets:
       - postgres-passwd

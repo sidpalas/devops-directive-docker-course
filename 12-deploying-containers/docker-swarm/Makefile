@@ -1,3 +1,5 @@
+### DOCKER COMPOSE
+
 .PHONY: compose-up
 compose-up:
 	docker compose -f docker-compose-prod.yml up
@@ -7,7 +9,11 @@ compose-up:
 compose-up-d:
 	docker compose -f docker-compose-prod.yml up -d
 
-###
+.PHONY: compose-down
+compose-down:
+	docker compose -f docker-compose-prod.yml down
+
+### DOCKER SWARM
 
 CIVO_SSH:="ssh://ubuntu@212.2.244.220"
 

@@ -3,9 +3,13 @@ version: '3.7'
 services:
   client-react-nginx:
     image: sidpalas/devops-directive-docker-course-client-react-nginx:5
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        order: start-first
     networks:
       - frontend
-    init: true
     ports:
       - 80:80
     restart: unless-stopped
@@ -17,9 +21,17 @@ services:
       start_period: 10s
   api-node:
     image: sidpalas/devops-directive-docker-course-api-node:8
+    read_only: true
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        order: start-first
     networks:
       - frontend
       - backend
+    ports:
+      - 3000:3000
     init: true
     depends_on:
       - db
@@ -27,13 +39,19 @@ services:
       - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "node", "src/healthcheck.js"]
+      test: ["CMD", "node", "/usr/src/app/healthcheck.js"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
   api-golang:
     image: sidpalas/devops-directive-docker-course-api-golang:7
+    read_only: true
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        order: start-first
     networks:
       - frontend
       - backend
@@ -43,6 +61,8 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
     restart: unless-stopped
+    ports:
+      - 8080:8080
     healthcheck:
       test: ["CMD", "/healthcheck"]
       interval: 30s
@@ -53,9 +73,12 @@ services:
     image: postgres:15.1-alpine
     networks:
       - backend
+    ports:
+      - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
+      - PGUSER=postgres
       - POSTGRES_PASSWORD=foobarbaz
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
