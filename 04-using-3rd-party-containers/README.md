@@ -37,7 +37,7 @@ Let's experiment with how installing something into a container at runtime behav
 
 ```bash
 # Create a container from the ubuntu image
-docker run --interactive --tty --rm ubuntu:2
+docker run --interactive --tty --rm ubuntu:22.04
 
 # Try to ping google.com
 ping google.com -c 1 # This results in `bash: ping: command not found`
