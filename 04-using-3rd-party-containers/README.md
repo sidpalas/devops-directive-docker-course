@@ -120,7 +120,7 @@ docker run -it --rm ubuntu:22.04
 
 # Make a directory and store a file in it
 mkdir my-data
-echo "Hello from the container! 👋" > /my-data/hello.txt
+echo "Hello from the container!" > /my-data/hello.txt
 
 # Confirm the file exists
 cat my-data/hello.txt
@@ -150,7 +150,7 @@ docker run  -it --rm --mount source=my-volume,destination=/my-data/ ubuntu:22.04
 docker run  -it --rm -v my-volume:/my-data ubuntu:22.04
 
 # Now we can create and store the file into the location we mounted the volume
-echo "Hello from the container! 👋" > /my-data/hello.txt
+echo "Hello from the container!" > /my-data/hello.txt
 cat my-data/hello.txt
 exit
 ```
@@ -196,7 +196,7 @@ docker run  -it --rm --mount type=bind,source="${PWD}"/my-data,destination=/my-d
 # Again, there is a similar (but shorter) syntax using -v which accomplishes the same
 docker run  -it --rm -v ${PWD}/my-data:/my-data ubuntu:22.04
 
-echo "Hello from the container! 👋" > /my-data/hello.txt
+echo "Hello from the container!" > /my-data/hello.txt
 
 # You should also be able to see the hello.txt file on your host system
 cat my-data/hello.txt
