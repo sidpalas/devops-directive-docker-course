@@ -48,6 +48,6 @@ Describes how to use Docker to interact with containers, container images, volum
 
 Establishes tooling and configuration to enable improved developer experience when working with containers.
 
-## 12 - [Deploying Containers](12-deploying-containers/README.md)
+## [12 - Deploying Containers](12-deploying-containers/README.md)
 
 Demonstrates deploying container applications to production using three different approaches: railway.app, a single node Docker Swarm, and a Kubernetes cluster.
