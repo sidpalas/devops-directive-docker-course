@@ -50,8 +50,8 @@ CMD and ENTRYPOINT.
 
 The image has the following:
 
- ENTRYPOINT [ "echo", "Hey Team 👋 (entrypoint)" ]
- CMD [ "+ (cmd)" ]
+  ENTRYPOINT [ "echo", "Hey Team 👋 (entrypoint)" ]
+  CMD [ "+ (cmd)" ]
 
 ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
 
