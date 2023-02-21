@@ -1,6 +1,8 @@
 version: "3.9"
 services:
   client-react-vite:
+    labels:
+      shipyard.route: '/'
     image: client-react-vite
     build:
       context: ../05-example-web-application/client-react/
@@ -12,10 +14,9 @@ services:
       - frontend
     ports:
       - 5173:5173
-    shipyard:
-      primary-route: true
-      route: /
   client-react-nginx:
+    labels:
+      shipyard.route: '/'
     image: client-react-nginx
     build:
       context: ../05-example-web-application/client-react/
@@ -27,6 +28,8 @@ services:
       - 80:8080
     restart: unless-stopped
   api-node:
+    labels:
+      shipyard.route: '/api/node/'
     image: api-node
     build:
       context: ../05-example-web-application/api-node/
@@ -43,6 +46,8 @@ services:
       - 3000:3000
     restart: unless-stopped
   api-golang:
+    labels:
+      shipyard.route: '/api/golang/'
     image: api-golang
     build:
       context: ../05-example-web-application/api-golang/
