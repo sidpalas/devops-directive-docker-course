@@ -84,7 +84,7 @@ docker-run-all:
 	docker run -d \
 		--name client-react-nginx \
 		--network my-network \
-		-p 5174:80 \
+		-p 80:8080 \
 		--restart unless-stopped \
 		--link=api-node \
 		--link=api-golang \

@@ -3,7 +3,7 @@ services:
     image: client-react-vite
     build:
       context: ../05-example-web-application/client-react/
-      dockerfile: ../../06-building-container-images/client-react/Dockerfile.4
+      dockerfile: ../../06-building-container-images/client-react/Dockerfile.3
     init: true
     volumes:
       - ${PWD}/client-react/vite.config.js:/usr/src/app/vite.config.js
@@ -26,7 +26,7 @@ services:
     image: api-node
     build:
       context: ../05-example-web-application/api-node/
-      dockerfile: ../../06-building-container-images/api-node/Dockerfile.8
+      dockerfile: ../../06-building-container-images/api-node/Dockerfile.7
     init: true
     depends_on:
       - db
