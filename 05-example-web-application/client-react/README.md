@@ -1,5 +1,10 @@
 ```
 npm create vite@latest
-npm i @tanstack/react-query axios
 ```
 
+```
+nvm ls
+nvm use node 19.4
+npm install
+npm run dev
+```

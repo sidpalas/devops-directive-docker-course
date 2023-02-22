@@ -1,0 +1,14 @@
+# Overlay configuration to run tests
+version: "3.9"
+services:
+  api-node:
+    command: 
+      - "npm"
+      - "run"
+      - "test"
+  api-golang:
+    command: 
+      - "go"
+      - "test"
+      - "-v"
+      - "./..."

@@ -26,7 +26,7 @@
 
 When we create a container from a container image, everything in the image is treated as read-only, and there is a new layer overlayed on top that is read/write.
 
-![](./images/container-filesystem.jpg)
+![](./readme-assets/container-filesystem.jpg)
 
 ### A. Installing Dependencies:
 
@@ -37,7 +37,7 @@ Let's experiment with how installing something into a container at runtime behav
 
 ```bash
 # Create a container from the ubuntu image
-docker run --interactive --tty --rm ubuntu:2
+docker run --interactive --tty --rm ubuntu:22.04
 
 # Try to ping google.com
 ping google.com -c 1 # This results in `bash: ping: command not found`
@@ -106,7 +106,7 @@ The one exception to this rule is environment specific configuration (environmen
 
 Often, our applications produce data that we need to safely persist (e.g. database data, user uploaded data, etc...) even if the containers are destroyed and recreated. Luckily, Docker (and containers more generally) have a feature to handle this use case called `Volumes` and `mounts`!
 
-![](./images/volumes.jpg)
+![](./readme-assets/volumes.jpg)
 
 `Volumes` and `mounts` allow us to specify a location where data should persist beyond the lifecycle of a single container. The data can live in a location managed by Docker (`volume mount`), a location in your host filesystem (`bind mount`), or in memory (`tmpfs mount`, not pictured). 
 
@@ -120,7 +120,7 @@ docker run -it --rm ubuntu:22.04
 
 # Make a directory and store a file in it
 mkdir my-data
-echo "Hello from the container! 👋" > /my-data/hello.txt
+echo "Hello from the container!" > /my-data/hello.txt
 
 # Confirm the file exists
 cat my-data/hello.txt
@@ -150,7 +150,7 @@ docker run  -it --rm --mount source=my-volume,destination=/my-data/ ubuntu:22.04
 docker run  -it --rm -v my-volume:/my-data ubuntu:22.04
 
 # Now we can create and store the file into the location we mounted the volume
-echo "Hello from the container! 👋" > /my-data/hello.txt
+echo "Hello from the container!" > /my-data/hello.txt
 cat my-data/hello.txt
 exit
 ```
@@ -196,7 +196,7 @@ docker run  -it --rm --mount type=bind,source="${PWD}"/my-data,destination=/my-d
 # Again, there is a similar (but shorter) syntax using -v which accomplishes the same
 docker run  -it --rm -v ${PWD}/my-data:/my-data ubuntu:22.04
 
-echo "Hello from the container! 👋" > /my-data/hello.txt
+echo "Hello from the container!" > /my-data/hello.txt
 
 # You should also be able to see the hello.txt file on your host system
 cat my-data/hello.txt

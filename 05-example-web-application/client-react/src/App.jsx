@@ -10,7 +10,7 @@ import './App.css'
 
 const queryClient = new QueryClient();
 
-function Example(props) {
+function CurrentTime(props) {
   const { isLoading, error, data, isFetching } = useQuery({
     queryKey: [props.api],
     queryFn: () =>
@@ -37,8 +37,8 @@ export function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <h1>Hey Team! 👋</h1>
-      <Example api="/api/golang/"/>
-      <Example api="/api/node/"/>
+      <CurrentTime api="/api/golang/"/>
+      <CurrentTime api="/api/node/"/>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

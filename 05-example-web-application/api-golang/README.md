@@ -1,11 +1,6 @@
-
-```
-go mod init api-golang
-go get -u github.com/gin-gonic/gin
-go get -u github.com/lib/pq
-```
-
-
-```
-go run src/main.go
+```bash
+mkdir go-workspace
+export GOPATH=$PWD/go-workspace
+go mod download
+go run main.go
 ```

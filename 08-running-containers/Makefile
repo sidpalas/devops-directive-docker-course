@@ -31,6 +31,8 @@ docker-build-all:
 
 	docker build -t api-golang -f ${DOCKERFILE_DIR}/api-golang/Dockerfile.6 ${DOCKERCONTEXT_DIR}/api-golang/
 
+DATABASE_URL:=postgres://postgres:foobarbaz@db:5432/postgres
+
 .PHONY: docker-run-all
 docker-run-all:
 	echo "$$DOCKER_COMPOSE_NOTE"
@@ -40,8 +42,11 @@ docker-run-all:
 
 	$(MAKE) docker-rm
 
+	docker network create my-network
+
 	docker run -d \
 		--name db \
+		--network my-network \
 		-e POSTGRES_PASSWORD=foobarbaz \
 		-v pgdata:/var/lib/postgresql/data \
 		-p 5432:5432 \
@@ -50,7 +55,8 @@ docker-run-all:
 
 	docker run -d \
 		--name api-node \
-		-e DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres \
+		--network my-network \
+		-e DATABASE_URL=${DATABASE_URL} \
 		-p 3000:3000 \
 		--restart unless-stopped \
 		--link=db \
@@ -58,7 +64,8 @@ docker-run-all:
 
 	docker run -d \
 		--name api-golang \
-		-e DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres \
+		--network my-network \
+		-e DATABASE_URL=${DATABASE_URL} \
 		-p 8080:8080 \
 		--restart unless-stopped \
 		--link=db \
@@ -66,6 +73,7 @@ docker-run-all:
 
 	docker run -d \
 		--name client-react-vite \
+		--network my-network \
 		-v ${PWD}/client-react/vite.config.js:/usr/src/app/vite.config.js \
 		-p 5173:5173 \
 		--restart unless-stopped \
@@ -75,7 +83,8 @@ docker-run-all:
 
 	docker run -d \
 		--name client-react-nginx \
-		-p 5174:80 \
+		--network my-network \
+		-p 80:8080 \
 		--restart unless-stopped \
 		--link=api-node \
 		--link=api-golang \
@@ -96,6 +105,7 @@ docker-rm:
 	-docker container rm api-golang
 	-docker container rm client-react-vite
 	-docker container rm client-react-nginx
+	-docker network rm my-network
 
 define DOCKER_COMPOSE_NOTE
 

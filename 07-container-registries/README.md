@@ -2,7 +2,7 @@
 
 A container registry is a repository, or collection of repositories, used to store and access container images. They serve as a place to store and share container images between developer systems, continuous integration servers, and deployment environments.
 
-![](./images/container-registry.jpg)
+![](./readme-assets/container-registry.jpg)
 
 Examples of popular container registries include:
 
@@ -24,5 +24,5 @@ Docker can login directly to some registries with basic authentication (username
 
 If available, Docker can also store the credentials in a secure store (`macOS keychain`, `Windows Credential Manager`) to help protect those credentials.
 
-![](./images/credential-helper.jpg)
+![](./readme-assets/credential-helper.jpg)
 
