@@ -1,4 +1,4 @@
-# Overlay configuration to enable debuggers
+# Overlay configuration to run tests
 services:
   api-node:
     command: 
