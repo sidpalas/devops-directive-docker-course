@@ -1,5 +1,7 @@
 # DevOps Directive Docker Course
 
+**NOTE:** The course video will be released to YouTube in Spring 2023!
+
 This is the companion repo to: `<INSERT VIDEO LINK>`
 
 `<INSERT THUMBNAIL IMAGE>`
