@@ -44,7 +44,7 @@ Highlights best practices for container image and container runtime security.
 
 Describes how to use Docker to interact with containers, container images, volumes, and networks.
 
-## [11 - Development Workflows](11-development-workflow/api-golang/README.md)
+## [11 - Development Workflows](11-development-workflow/README.md)
 
 Establishes tooling and configuration to enable improved developer experience when working with containers.
 
