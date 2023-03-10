@@ -1,6 +1,6 @@
 # Pin specific version for stability
-# Use alpine for reduced image size
-FROM node:19.6-alpine AS base
+# Use slim for reduced image size
+FROM node:19.6-bullseye-slim AS base
 
 # Specify working directory other than /
 WORKDIR /usr/src/app
