@@ -6,6 +6,14 @@ This is the companion repo to: `<INSERT VIDEO LINK>`
 
 `<INSERT THUMBNAIL IMAGE>`
 
+## Sponsor
+
+[![](./readme-assets/shipyard-logo.png)](https://shipyard.build)
+
+Thank you to Shipyard for sponsoring this course. It is because of their support that I am able to provide it to the community free of charge!
+
+Shipyard is the easiest way to generate on demand ephemeral environments (aka a new environment for every pull request). Check them out at https://shipyard.build/!
+
 ## [01 - History and Motivation](01-history-and-motivation/README.md)
 
 Examines the evolution of virtualization technologies from bare metal, virtual machines, and containers and the tradeoffs between them.
