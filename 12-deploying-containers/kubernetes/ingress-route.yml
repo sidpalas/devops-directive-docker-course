@@ -12,7 +12,7 @@ spec:
     - kind: Service
       name: client-react-nginx
       namespace: default
-      port: 80
+      port: 8080
       scheme: http
   - kind: Rule
     match: Host(`docker-course-kubernetes.devopsdirective.com`) && PathPrefix(`/api/node`)

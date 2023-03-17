@@ -6,16 +6,16 @@ services:
     networks:
       - frontend
     ports:
-      - 80:80
+      - 80:8080
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/ping"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/ping"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
   api-node:
-    image: sidpalas/devops-directive-docker-course-api-node:8
+    image: sidpalas/devops-directive-docker-course-api-node:9
     read_only: true
     networks:
       - frontend
@@ -35,7 +35,7 @@ services:
       retries: 3
       start_period: 10s
   api-golang:
-    image: sidpalas/devops-directive-docker-course-api-golang:7
+    image: sidpalas/devops-directive-docker-course-api-golang:8
     read_only: true
     networks:
       - frontend

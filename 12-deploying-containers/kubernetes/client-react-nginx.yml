@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-react-nginx
+spec:
+  selector:
+    app: client-react-nginx
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,14 +29,15 @@ spec:
       containers:
       - image: sidpalas/devops-directive-docker-course-client-react-nginx:5
         name: client-react-nginx
+        imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           protocol: TCP
         readinessProbe:
           failureThreshold: 3
           httpGet:
             path: /ping
-            port: 80
+            port: 8080
         resources:
           limits:
             memory: 100Mi
@@ -53,7 +66,7 @@ metadata:
 data:
   default.conf: |-
     server {
-      listen 80;
+      listen 8080;
 
       location /ping {
             access_log off;

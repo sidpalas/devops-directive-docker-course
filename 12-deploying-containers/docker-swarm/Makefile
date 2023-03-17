@@ -25,6 +25,10 @@ swarm-init:
 swarm-deploy-stack:
 	DOCKER_HOST=${DOCKER_HOST} docker stack deploy -c docker-swarm.yml example-app
 
+.PHONY: swarm-ls
+swarm-ls:
+	DOCKER_HOST=${DOCKER_HOST} docker service ls
+
 .PHONY: swarm-remove-stack
 swarm-remove-stack:
 	DOCKER_HOST=${DOCKER_HOST} docker stack rm example-app
