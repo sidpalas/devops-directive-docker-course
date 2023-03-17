@@ -1,5 +1,4 @@
 version: '3.7'
-
 services:
   client-react-nginx:
     image: sidpalas/devops-directive-docker-course-client-react-nginx:5
@@ -8,6 +7,7 @@ services:
       replicas: 1
       update_config:
         order: start-first
+    init: true
     networks:
       - frontend
     ports:
@@ -26,6 +26,7 @@ services:
       replicas: 1
       update_config:
         order: start-first
+    init: true
     environment:
       - DATABASE_URL_FILE=/run/secrets/database-url
     secrets:
@@ -33,8 +34,6 @@ services:
     networks:
       - frontend
       - backend
-    ports:
-      - 3000:3000
     healthcheck:
       test: ["CMD", "node", "/usr/src/app/healthcheck.js"]
       interval: 30s
@@ -49,16 +48,14 @@ services:
       replicas: 2
       update_config:
         order: start-first
-    networks:
-      - frontend
-      - backend
     init: true
     environment:
       - DATABASE_URL_FILE=/run/secrets/database-url
     secrets:
       - database-url
-    ports:
-      - 8080:8080
+    networks:
+      - frontend
+      - backend
     healthcheck:
       test: ["CMD", "/healthcheck"]
       interval: 30s
@@ -67,10 +64,6 @@ services:
       start_period: 10s
   db:
     image: postgres:15.1-alpine
-    networks:
-      - backend
-    ports:
-      - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
@@ -83,14 +76,13 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
+    networks:
+      - backend
 volumes:
   pgdata:
-
 networks:
   frontend:
   backend:
-
 secrets:
   database-url:
     external: true

@@ -15,7 +15,7 @@ compose-down:
 
 ### DOCKER SWARM
 
-DOCKER_HOST:="ssh://ubuntu@212.2.244.220"
+DOCKER_HOST:="ssh://ubuntu@212.2.244.152"
 
 .PHONY: swarm-init
 swarm-init:
@@ -35,5 +35,9 @@ swarm-remove-stack:
 
 .PHONY: create-secrets
 create-secrets:
-	echo -n "foobarbaz" | DOCKER_HOST=${DOCKER_HOST} docker secret create postgres-passwd -
-	echo -n "postgres://postgres:foobarbaz@db:5432/postgres" | DOCKER_HOST=${DOCKER_HOST} docker secret create database-url -
+	printf "foobarbaz" | DOCKER_HOST=${DOCKER_HOST} docker secret create postgres-passwd -
+	printf "postgres://postgres:foobarbaz@db:5432/postgres" | DOCKER_HOST=${DOCKER_HOST} docker secret create database-url -
+
+.PHONY: delete-secrets
+delete-secrets:
+	DOCKER_HOST=${DOCKER_HOST} docker secret rm postgres-passwd database-url
