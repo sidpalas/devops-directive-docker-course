@@ -16,6 +16,7 @@ services:
       - 5173:5173
   client-react-nginx:
     labels:
+      shipyard.primary-route: true
       shipyard.route: '/'
     image: client-react-nginx
     build:
