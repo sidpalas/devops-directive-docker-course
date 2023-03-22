@@ -11,6 +11,8 @@ ARG BASE_IMAGE_TAG=19.4
 
 FROM node:${BASE_IMAGE_TAG}
 
+LABEL org.opencontainers.image.authors="sid@devopsdirective.com"
+
 RUN echo "Hey Team 👋 (shell form)"
 RUN ["echo", "Hey Team 👋 (exec form)"]
 
