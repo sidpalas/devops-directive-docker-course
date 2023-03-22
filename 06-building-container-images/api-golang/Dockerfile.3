@@ -1,6 +1,6 @@
 # Pin specific version for stability
-# Use alpine for reduced image size
-FROM golang:1.19-alpine
+# Use debian for easier build utilities
+FROM golang:1.19-bullseye-slim AS build
 
 WORKDIR /app 
 
