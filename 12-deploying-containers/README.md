@@ -34,7 +34,7 @@ At this point, we already have a `docker compose` file which allows us to specif
 Luckily, docker swarm does provide those things and setting up a single node cluster can be done with one command `docker swarm init`. Making just a few modifications to the docker compose file (adding `deploy` configurations, passing sensitive info as secrets and reading those data as files within the applications) it is ready to deploy.
 
 1) Create a virtual machine with your favorite cloud provider. Make sure to set up the firewall to listen on ports 80, 443, and 22.
-2) Use the script at https://get.docker.com/ to install docker engine
+2) Use the script at https://get.docker.com/ to install docker engine. If managing docker as a non-root user, you may need to follow these steps: https://docs.docker.com/engine/install/linux-postinstall/ after installing.
 3) Set the `DOCKER_HOST` environment variable in the Makefile to `USERNAME@IP_ADDRESS` of your virtual machine (this will allow your local docker client to use the remote docker daemon!)
 4) Build and push the container images to a registry
 5) Populate the secrets by running `make create-secrets`
