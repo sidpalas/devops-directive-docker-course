@@ -12,6 +12,9 @@ services:
     ports:
       - 5173:5173
   client-react-nginx:
+    labels:
+      shipyard.primary-route: true
+      shipyard.route: '/'
     image: client-react-nginx
     build:
       context: ../05-example-web-application/client-react/
@@ -23,6 +26,8 @@ services:
       - 80:8080
     restart: unless-stopped
   api-node:
+    labels:
+      shipyard.route: '/api/node/'
     image: api-node
     build:
       context: ../05-example-web-application/api-node/
@@ -34,11 +39,13 @@ services:
       - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
     networks:
       - frontend
-      - backend  
+      - backend
     ports:
       - 3000:3000
     restart: unless-stopped
   api-golang:
+    labels:
+      shipyard.route: '/api/golang/'
     image: api-golang
     build:
       context: ../05-example-web-application/api-golang/
