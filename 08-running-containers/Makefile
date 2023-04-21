@@ -59,7 +59,6 @@ docker-run-all:
 		-e DATABASE_URL=${DATABASE_URL} \
 		-p 3000:3000 \
 		--restart unless-stopped \
-		--link=db \
 		api-node
 
 	docker run -d \
@@ -68,7 +67,6 @@ docker-run-all:
 		-e DATABASE_URL=${DATABASE_URL} \
 		-p 8080:8080 \
 		--restart unless-stopped \
-		--link=db \
 		api-golang
 
 	docker run -d \
@@ -77,8 +75,6 @@ docker-run-all:
 		-v ${PWD}/client-react/vite.config.js:/usr/src/app/vite.config.js \
 		-p 5173:5173 \
 		--restart unless-stopped \
-		--link=api-node \
-		--link=api-golang \
 		client-react-vite
 
 	docker run -d \
@@ -86,8 +82,6 @@ docker-run-all:
 		--network my-network \
 		-p 80:8080 \
 		--restart unless-stopped \
-		--link=api-node \
-		--link=api-golang \
 		client-react-ngnix
 
 .PHONY: docker-stop
