@@ -6,7 +6,7 @@ This is the companion repo to: [Complete Docker Course - From BEGINNER to PRO! (
 
 ## Sponsor
 
-[![](./readme-assets/shipyard-logo.png)](https://shipyard.social/DevOpsDirectivePromo)
+[![](./readme-assets/shipyard-logo.png)](https://shipyard.social/mainpage)
 
 Thank you to Shipyard for sponsoring this course! It is because of their support that I am able to provide it to the community free of charge!
 
