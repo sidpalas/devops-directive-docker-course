@@ -41,3 +41,11 @@ create-secrets:
 .PHONY: delete-secrets
 delete-secrets:
 	DOCKER_HOST=${DOCKER_HOST} docker secret rm postgres-passwd database-url
+
+.PHONY: redeploy-all
+redeploy-all:
+	-$(MAKE) swarm-remove-stack
+	-$(MAKE) delete-secrets
+	@sleep 3
+	-$(MAKE) create-secrets
+	-$(MAKE) swarm-deploy-stack
