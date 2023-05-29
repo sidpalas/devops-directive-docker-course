@@ -8,6 +8,10 @@ databaseUrl =
 
 const pool = new Pool({
   connectionString: databaseUrl,
+  ssl: {
+    rejectUnauthorized: false,
+    ca: fs.readFileSync('/db.crt').toString(),
+  },
 });
 
 // the pool will emit an error on behalf of any idle clients

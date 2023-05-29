@@ -13,7 +13,7 @@ services:
     ports:
       - 80:8080
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/ping"]
+      test: ['CMD', 'curl', '-f', 'http://localhost:8080/ping']
       interval: 30s
       timeout: 5s
       retries: 3
@@ -29,13 +29,15 @@ services:
     init: true
     environment:
       - DATABASE_URL_FILE=/run/secrets/database-url
+    configs:
+      - db.crt
     secrets:
       - database-url
     networks:
       - frontend
       - backend
     healthcheck:
-      test: ["CMD", "node", "/usr/src/app/healthcheck.js"]
+      test: ['CMD', 'node', '/usr/src/app/healthcheck.js']
       interval: 30s
       timeout: 5s
       retries: 3
@@ -57,34 +59,37 @@ services:
       - frontend
       - backend
     healthcheck:
-      test: ["CMD", "/healthcheck"]
+      test: ['CMD', '/healthcheck']
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
-  db:
-    image: postgres:15.1-alpine
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    environment:
-      - PGUSER=postgres
-      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres-passwd
-    secrets:
-      - postgres-passwd
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - backend
-volumes:
-  pgdata:
+  # db:
+  #   image: postgres:15.1-alpine
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  #   environment:
+  #     - PGUSER=postgres
+  #     - POSTGRES_PASSWORD_FILE=/run/secrets/postgres-passwd
+  #   secrets:
+  #     - postgres-passwd
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   networks:
+  #     - backend
+# volumes:
+#   pgdata:
 networks:
   frontend:
   backend:
 secrets:
   database-url:
     external: true
-  postgres-passwd:
-    external: true
+  # postgres-passwd:
+  #   external: true
+configs:
+  db.crt:
+    file: ./db.crt
