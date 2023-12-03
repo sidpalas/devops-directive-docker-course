@@ -3,7 +3,7 @@ name: image-ci
 on:
   push:
     branches:
-      - 'github-action'
+      - 'main'
     tags:
       - 'v*'
 
@@ -19,7 +19,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            sidpalas/devops-directive-docker-course-api-node
+            moyinopoola/pvtrepo
           tags: |
             type=raw,value=latest
             type=ref,event=branch
@@ -45,7 +45,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'sidpalas/devops-directive-docker-course-api-node:latest'
+          image-ref: 'moyinopoola/pvtrepo:latest'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
