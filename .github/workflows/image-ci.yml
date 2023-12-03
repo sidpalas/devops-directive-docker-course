@@ -19,7 +19,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            node:latest
+            moyinopoola/pvtrepo:latest
           tags: |
             type=raw,value=latest
             type=ref,event=branch
@@ -45,7 +45,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'node:latest'
+          image-ref: 'moyinopoola/pvtrepo:latest'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
