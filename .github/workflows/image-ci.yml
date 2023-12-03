@@ -3,7 +3,7 @@ name: image-ci
 on:
   push:
     branches:
-      - 'github-action'
+      - 'main'
     tags:
       - 'v*'
 
