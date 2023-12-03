@@ -19,7 +19,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            moyinopoola/pvtrepo:latest
+            moyinopoola/pvtrepo
           tags: |
             type=raw,value=latest
             type=ref,event=branch
