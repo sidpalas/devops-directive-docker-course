@@ -321,6 +321,20 @@ docker run -d --rm \
     neo4j:5.4.0-community
 ```
 
+#### WordPress
+https://hub.docker.com/_/wordpress
+
+```bash
+docker run -d --rm \
+  -v wordpress:/var/www/html \
+  -e WORDPRESS_DB_HOST=db \
+  -e WORDPRESS_DB_USER=exampleuser \
+  -e WORDPRESS_DB_PASSWORD=examplepass \
+  -e WORDPRESS_DB_NAME=exampledb \
+  -p 8080:80 \
+  wordpress:latest
+```
+
 ### B. Interactive Test Environments
 
 #### i. Operating systems
