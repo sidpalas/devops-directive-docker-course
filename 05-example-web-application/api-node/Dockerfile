@@ -1,6 +1,4 @@
-FROM ubuntu
-
-RUN apt-get update && apt-get install nodejs npm -y
+FROM node
 
 COPY . .
 
