@@ -10,7 +10,10 @@ COPY package*.json ./
 
 RUN npm install
 
+# Use non root user
+USER node
+
 #Copy remaining source code AFTER installing dependencies
-COPY ./src .
+COPY --chown=node:node ./src .
 
 CMD ["node", "index.js"]
