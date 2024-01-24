@@ -8,7 +8,10 @@ WORKDIR /app
 # Copy only required insall files (better caching)
 COPY go.mod go.sum ./
 
-RUN go mod download
+# Use cache mount to speed up install of existing dependencies
+RUN --mount=type=cache,target=/go/pkg/mod \
+  --mount=type=cache,target=/root/.cache/go-build \
+  go mod download
 
 COPY . .
 
