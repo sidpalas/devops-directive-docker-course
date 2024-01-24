@@ -1,4 +1,5 @@
-FROM node
+# Pin base image
+FROM node:19.4-bullseye
 
 COPY . .
 
