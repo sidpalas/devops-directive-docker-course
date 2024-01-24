@@ -27,8 +27,13 @@ ENV GIN_MODE release
 
 WORKDIR /
 
+# Copy password file
+COPY --from=build /etc/passwd /etc/passwd
+
 # Copy the binary from build stage
 COPY --from=build /app/api-golang api-golang
+
+USER nonroot
 
 # Expose port
 EXPOSE 8080
