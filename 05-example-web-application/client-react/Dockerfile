@@ -6,8 +6,11 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-COPY . .
+# Use cache mount to speed up install of existing dependencies
+RUN --mount=type=cache,target=/usr/src/app/.npm \
+  npm set cache /usr/src/app/.npm && \
+  npm install
 
-RUN npm install
+COPY . .
 
 CMD ["npm", "run", "dev"]
