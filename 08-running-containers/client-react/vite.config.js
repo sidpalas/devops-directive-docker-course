@@ -22,5 +22,9 @@ export default defineConfig({
         secure: false,
       },
     },
+    watch: {
+      usePolling: true, // Add this to enable polling for file changes
+      interval: 10,  // Adjust the polling interval if needed
+    },
   },
 });
