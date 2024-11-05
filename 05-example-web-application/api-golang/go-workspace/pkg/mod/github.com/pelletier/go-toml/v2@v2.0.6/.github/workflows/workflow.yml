@@ -1,0 +1,32 @@
+name: test
+on:
+  push:
+    branches:
+      - v2
+  pull_request:
+    branches:
+      - v2
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ 'ubuntu-latest', 'windows-latest', 'macos-latest']
+        go: [ '1.18', '1.19' ]
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.go }}/${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup go ${{ matrix.go }}
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ matrix.go }}
+      - name: Run unit tests
+        run: go test -race ./...
+  release-check:
+    if: ${{ github.ref != 'refs/heads/v2' }}
+    uses: pelletier/go-toml/.github/workflows/release.yml@v2
+    with:
+      args: --snapshot

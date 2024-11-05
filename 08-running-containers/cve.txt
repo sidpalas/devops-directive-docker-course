@@ -1,0 +1,236 @@
+
+
+## Overview
+
+                    │           Analyzed Image            
+────────────────────┼─────────────────────────────────────
+  Target            │  api-golang:latest                  
+    digest          │  b709c60c1fed                       
+    platform        │ linux/arm64                         
+    vulnerabilities │    2C    13H    15M     0L     3?   
+    size            │ 7.6 MB                              
+    packages        │ 24                                  
+
+
+## Packages and Vulnerabilities
+
+   1C    10H     7M     0L     3?  stdlib 1.19.13
+pkg:golang/stdlib@1.19.13
+
+    ✗ CRITICAL CVE-2024-24790
+      https://scout.docker.com/v/CVE-2024-24790?s=golang&n=stdlib&t=golang&vr=%3C1.21.11
+      Affected range : <1.21.11  
+      Fixed version  : 1.21.11   
+    
+    ✗ HIGH CVE-2024-34158
+      https://scout.docker.com/v/CVE-2024-34158?s=golang&n=stdlib&t=golang&vr=%3C1.22.7
+      Affected range : <1.22.7  
+      Fixed version  : 1.22.7   
+    
+    ✗ HIGH CVE-2024-34156
+      https://scout.docker.com/v/CVE-2024-34156?s=golang&n=stdlib&t=golang&vr=%3C1.22.7
+      Affected range : <1.22.7  
+      Fixed version  : 1.22.7   
+    
+    ✗ HIGH CVE-2024-24791
+      https://scout.docker.com/v/CVE-2024-24791?s=golang&n=stdlib&t=golang&vr=%3C1.21.12
+      Affected range : <1.21.12  
+      Fixed version  : 1.21.12   
+    
+    ✗ HIGH CVE-2024-24784
+      https://scout.docker.com/v/CVE-2024-24784?s=golang&n=stdlib&t=golang&vr=%3C1.21.8
+      Affected range : <1.21.8  
+      Fixed version  : 1.21.8   
+    
+    ✗ HIGH CVE-2023-45288
+      https://scout.docker.com/v/CVE-2023-45288?s=golang&n=stdlib&t=golang&vr=%3C1.21.9
+      Affected range : <1.21.9  
+      Fixed version  : 1.21.9   
+    
+    ✗ HIGH CVE-2023-45287
+      https://scout.docker.com/v/CVE-2023-45287?s=golang&n=stdlib&t=golang&vr=%3C1.20.0
+      Affected range : <1.20.0  
+      Fixed version  : 1.20.0   
+    
+    ✗ HIGH CVE-2023-45283
+      https://scout.docker.com/v/CVE-2023-45283?s=golang&n=stdlib&t=golang&vr=%3C1.20.11
+      Affected range : <1.20.11  
+      Fixed version  : 1.20.11   
+    
+    ✗ HIGH CVE-2023-44487  CISA KEV 
+      https://scout.docker.com/v/CVE-2023-44487?s=golang&n=stdlib&t=golang&vr=%3C1.20.10
+      Affected range : <1.20.10  
+      Fixed version  : 1.20.10   
+    
+    ✗ HIGH CVE-2023-39325
+      https://scout.docker.com/v/CVE-2023-39325?s=golang&n=stdlib&t=golang&vr=%3C1.20.10
+      Affected range : <1.20.10  
+      Fixed version  : 1.20.10   
+    
+    ✗ HIGH CVE-2022-30635
+      https://scout.docker.com/v/CVE-2022-30635?s=golang&n=stdlib&t=golang&vr=%3C1.22.7
+      Affected range : <1.22.7  
+      Fixed version  : 1.22.7   
+    
+    ✗ MEDIUM CVE-2023-39319
+      https://scout.docker.com/v/CVE-2023-39319?s=golang&n=stdlib&t=golang&vr=%3C1.20.8
+      Affected range : <1.20.8  
+      Fixed version  : 1.20.8   
+    
+    ✗ MEDIUM CVE-2023-39318
+      https://scout.docker.com/v/CVE-2023-39318?s=golang&n=stdlib&t=golang&vr=%3C1.20.8
+      Affected range : <1.20.8  
+      Fixed version  : 1.20.8   
+    
+    ✗ MEDIUM CVE-2024-24789
+      https://scout.docker.com/v/CVE-2024-24789?s=golang&n=stdlib&t=golang&vr=%3C1.21.11
+      Affected range : <1.21.11  
+      Fixed version  : 1.21.11   
+    
+    ✗ MEDIUM CVE-2023-45284
+      https://scout.docker.com/v/CVE-2023-45284?s=golang&n=stdlib&t=golang&vr=%3C1.20.11
+      Affected range : <1.20.11  
+      Fixed version  : 1.20.11   
+    
+    ✗ MEDIUM CVE-2023-39326
+      https://scout.docker.com/v/CVE-2023-39326?s=golang&n=stdlib&t=golang&vr=%3C1.20.12
+      Affected range : <1.20.12  
+      Fixed version  : 1.20.12   
+    
+    ✗ MEDIUM CVE-2024-34155
+      https://scout.docker.com/v/CVE-2024-34155?s=golang&n=stdlib&t=golang&vr=%3C1.22.7
+      Affected range : <1.22.7  
+      Fixed version  : 1.22.7   
+    
+    ✗ MEDIUM CVE-2023-45289
+      https://scout.docker.com/v/CVE-2023-45289?s=golang&n=stdlib&t=golang&vr=%3C1.21.8
+      Affected range : <1.21.8  
+      Fixed version  : 1.21.8   
+    
+    ✗ UNSPECIFIED CVE-2024-24785
+      https://scout.docker.com/v/CVE-2024-24785?s=golang&n=stdlib&t=golang&vr=%3C1.21.8
+      Affected range : <1.21.8  
+      Fixed version  : 1.21.8   
+    
+    ✗ UNSPECIFIED CVE-2024-24783
+      https://scout.docker.com/v/CVE-2024-24783?s=golang&n=stdlib&t=golang&vr=%3C1.21.8
+      Affected range : <1.21.8  
+      Fixed version  : 1.21.8   
+    
+    ✗ UNSPECIFIED CVE-2023-45290
+      https://scout.docker.com/v/CVE-2023-45290?s=golang&n=stdlib&t=golang&vr=%3C1.21.8
+      Affected range : <1.21.8  
+      Fixed version  : 1.21.8   
+    
+
+   1C     1H     1M     0L  github.com/jackc/pgx/v5 5.2.0
+pkg:golang/github.com/jackc/pgx@5.2.0#v5
+
+    ✗ CRITICAL GHSA-7jwh-3vrq-q3m8 [OWASP Top Ten 2017 Category A9 - Using Components with Known Vulnerabilities]
+      https://scout.docker.com/v/GHSA-7jwh-3vrq-q3m8?s=gitlab&n=v5&ns=github.com%2Fjackc%2Fpgx&t=golang&vr=%3E%3D5.0.0%2C%3C5.5.4
+      Affected range : >=5.0.0                                       
+                     : <5.5.4                                        
+      Fixed version  : 5.5.4                                         
+      CVSS Score     : 9.8                                           
+      CVSS Vector    : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H  
+    
+    ✗ HIGH CVE-2024-27304 [Integer Overflow or Wraparound]
+      https://scout.docker.com/v/CVE-2024-27304?s=github&n=v5&ns=github.com%2Fjackc%2Fpgx&t=golang&vr=%3E%3D5.0.0%2C%3C5.5.4
+      Affected range : >=5.0.0                                                              
+                     : <5.5.4                                                               
+      Fixed version  : 5.5.4                                                                
+      CVSS Score     : 9.8                                                                  
+      CVSS Vector    : CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N/E:U  
+    
+    ✗ MEDIUM GHSA-fqpg-rq76-99pq
+      https://scout.docker.com/v/GHSA-fqpg-rq76-99pq?s=github&n=v5&ns=github.com%2Fjackc%2Fpgx&t=golang&vr=%3C5.5.2
+      Affected range : <5.5.2  
+      Fixed version  : 5.5.2   
+    
+
+   0C     2H     3M     0L  golang.org/x/net 0.5.0
+pkg:golang/golang.org/x/net@0.5.0
+
+    ✗ HIGH CVE-2023-39325 [Uncontrolled Resource Consumption]
+      https://scout.docker.com/v/CVE-2023-39325?s=github&n=net&ns=golang.org%2Fx&t=golang&vr=%3C0.17.0
+      Affected range : <0.17.0                                       
+      Fixed version  : 0.17.0                                        
+      CVSS Score     : 7.5                                           
+      CVSS Vector    : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H  
+    
+    ✗ HIGH CVE-2022-41723 [Uncontrolled Resource Consumption]
+      https://scout.docker.com/v/CVE-2022-41723?s=github&n=net&ns=golang.org%2Fx&t=golang&vr=%3C0.7.0
+      Affected range : <0.7.0                                        
+      Fixed version  : 0.7.0                                         
+      CVSS Score     : 7.5                                           
+      CVSS Vector    : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H  
+    
+    ✗ MEDIUM CVE-2023-3978 [Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')]
+      https://scout.docker.com/v/CVE-2023-3978?s=github&n=net&ns=golang.org%2Fx&t=golang&vr=%3C0.13.0
+      Affected range : <0.13.0                                       
+      Fixed version  : 0.13.0                                        
+      CVSS Score     : 6.1                                           
+      CVSS Vector    : CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N  
+    
+    ✗ MEDIUM CVE-2023-45288 [Uncontrolled Resource Consumption]
+      https://scout.docker.com/v/CVE-2023-45288?s=github&n=net&ns=golang.org%2Fx&t=golang&vr=%3C0.23.0
+      Affected range : <0.23.0                                       
+      Fixed version  : 0.23.0                                        
+      CVSS Score     : 5.3                                           
+      CVSS Vector    : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L  
+    
+    ✗ MEDIUM CVE-2023-44487  CISA KEV  [Uncontrolled Resource Consumption]
+      https://scout.docker.com/v/CVE-2023-44487?s=github&n=net&ns=golang.org%2Fx&t=golang&vr=%3C0.17.0
+      Affected range : <0.17.0                                                          
+      Fixed version  : 0.17.0                                                           
+      CVSS Score     : 5.3                                                              
+      CVSS Vector    : CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N  
+    
+
+   0C     0H     2M     0L  github.com/gin-gonic/gin 1.8.2
+pkg:golang/github.com/gin-gonic/gin@1.8.2
+
+    ✗ MEDIUM CVE-2023-26125 [Improper Input Validation]
+      https://scout.docker.com/v/CVE-2023-26125?s=github&n=gin&ns=github.com%2Fgin-gonic&t=golang&vr=%3C1.9.0
+      Affected range : <1.9.0                                        
+      Fixed version  : 1.9.0                                         
+      CVSS Score     : 5.6                                           
+      CVSS Vector    : CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:L  
+    
+    ✗ MEDIUM CVE-2023-29401 [Download of Code Without Integrity Check]
+      https://scout.docker.com/v/CVE-2023-29401?s=github&n=gin&ns=github.com%2Fgin-gonic&t=golang&vr=%3E%3D1.3.1-0.20190301021747-ccb9e902956d%2C%3C1.9.1
+      Affected range : >=1.3.1-0.20190301021747-ccb9e902956d         
+                     : <1.9.1                                        
+      Fixed version  : 1.9.1                                         
+      CVSS Score     : 4.3                                           
+      CVSS Vector    : CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N  
+    
+
+   0C     0H     1M     0L  google.golang.org/protobuf 1.28.1
+pkg:golang/google.golang.org/protobuf@1.28.1
+
+    ✗ MEDIUM CVE-2024-24786 [Loop with Unreachable Exit Condition ('Infinite Loop')]
+      https://scout.docker.com/v/CVE-2024-24786?s=github&n=protobuf&ns=google.golang.org&t=golang&vr=%3C1.33.0
+      Affected range : <1.33.0  
+      Fixed version  : 1.33.0   
+    
+
+   0C     0H     1M     0L  golang.org/x/crypto 0.5.0
+pkg:golang/golang.org/x/crypto@0.5.0
+
+    ✗ MEDIUM CVE-2023-48795 [Insufficient Verification of Data Authenticity]
+      https://scout.docker.com/v/CVE-2023-48795?s=github&n=crypto&ns=golang.org%2Fx&t=golang&vr=%3C0.17.0
+      Affected range : <0.17.0                                       
+      Fixed version  : 0.17.0                                        
+      CVSS Score     : 5.9                                           
+      CVSS Vector    : CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N  
+    
+
+
+33 vulnerabilities found in 6 packages
+  UNSPECIFIED  3   
+  LOW          0   
+  MEDIUM       15  
+  HIGH         13  
+  CRITICAL     2   
+
