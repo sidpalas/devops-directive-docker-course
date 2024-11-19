@@ -1,0 +1,31 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Docker: Attach to Node",
+			"type": "node",
+			"request": "attach",
+			"localRoot": "${workspaceFolder}/05-example-web-application/api-node",
+			"remoteRoot": "/usr/src/app/",
+			"trace": true,
+			"stopOnEntry": false,
+			"port": 9229,
+			"sourceMaps": true
+		},
+		{
+			"name": "Docker: Attach to Golang",
+			"type": "go",
+			"debugAdapter": "dlv-dap",
+			"mode": "remote",
+			"request": "attach",
+			"port": 4000,
+			"remotePath": "/app",
+			"substitutePath": [
+				{
+					"from": "${workspaceFolder}/docker-course/devops-directive-docker-course/05-example-web-application/api-golang",
+					"to": "/app"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,6 @@
+{
+ 
+ "ext": "js,json,html",
+ "watch": ["src"], 
+ "legacyWatch": true
+}

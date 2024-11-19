@@ -6,7 +6,7 @@ tmp_dir = "tmp"
 args_bin = []
 bin = "./tmp/main"
 cmd = "go build -o ./tmp/main ."
-delay = 0
+delay = 50
 exclude_dir = ["assets", "tmp", "vendor", "testdata"]
 exclude_file = []
 exclude_regex = ["_test.go"]
@@ -22,7 +22,8 @@ rerun = false
 rerun_delay = 500
 send_interrupt = false
 stop_on_error = false
-
+# poll = true to be compatible with WSL based on windows
+poll = true 
 [color]
 app = ""
 build = "yellow"

@@ -19,6 +19,8 @@ services:
       - frontend
     ports:
       - 5173:5173
+    environment:
+      - CHOKIDAR_USEPOLLING=true
   client-react-nginx:
     image: client-react-nginx
     build:
@@ -46,6 +48,7 @@ services:
     depends_on:
       - db
     environment:
+      - WATCHPACK_POOLING=true
       - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
     networks:
       - frontend

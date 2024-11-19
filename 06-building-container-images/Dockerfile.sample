@@ -19,10 +19,9 @@ RUN ["echo", "Hey Team 👋 (exec form)"]
 # Heredocs allow for specifying multiple commands to 
 # be run within a single step, across multiple lines
 # without lots of && and \
-RUN <<EOF
-apt update
-apt install iputils-ping -y
-EOF
+#RUN <<EOF
+RUN apt-get update && apt install -y iputils-ping 
+#EOF
 
 # --mount allows for mounting additional files
 # into the build context
