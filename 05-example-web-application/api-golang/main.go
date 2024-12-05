@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io/ioutil"
 	"log"
 	"os"
 	"time"
@@ -14,7 +13,7 @@ import (
 func init() {
 	databaseUrl := os.Getenv("DATABASE_URL")
 	if databaseUrl == "" {
-		content, err := ioutil.ReadFile(os.Getenv("DATABASE_URL_FILE"))
+		content, err := os.ReadFile(os.Getenv("DATABASE_URL_FILE"))
 		if err != nil {
 			log.Fatal(err)
 		}

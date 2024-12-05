@@ -1,7 +1,7 @@
 # Pin specific version for stability
 # Use separate stage for building image
 # Use debian for easier build utilities
-FROM golang:1.19-bullseye AS build-base
+FROM golang:1.23-alpine AS build
 
 WORKDIR /app 
 
@@ -13,38 +13,44 @@ RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
   go mod download
 
-FROM build-base AS dev
-
-# Install air for hot reload & delve for debugging
-RUN go install github.com/cosmtrek/air@latest && \
-  go install github.com/go-delve/delve/cmd/dlv@latest
-
+# Kopiera resten av koden till /app
 COPY . .
+
+# Skapa dev versionen av bilden
+FROM golang:1.23-alpine AS dev
+
+# Installera air för hot reload & delve för debugging
+RUN go install github.com/air-verse/air@latest && \
+    go install github.com/go-delve/delve/cmd/dlv@latest
+
+WORKDIR /app
+COPY --from=build /app .
 
 CMD ["air", "-c", ".air.toml"]
 
-FROM build-base AS build-production
+# Skapa production version av bilden
+FROM golang:1.23-alpine AS build-production
 
-# Add non root user
-RUN useradd -u 1001 nonroot
+# Lägg till non-root user
+RUN adduser -D -u 1001 nonroot
 
-COPY . .
+WORKDIR /app
+COPY --from=build /app .
 
-# Compile healthcheck
+# Kompilera healthcheck
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -tags netgo \
   -o healthcheck \
   ./healthcheck/healthcheck.go
 
-# Compile application during build rather than at runtime
-# Add flags to statically link binary
+# Kompilera huvudapplikationen
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -tags netgo \
   -o api-golang
 
-# Use separate stage for deployable image
+# Använd en minimal bild för deployment
 FROM scratch
 
 # Set gin mode
@@ -52,19 +58,17 @@ ENV GIN_MODE=release
 
 WORKDIR /
 
-# Copy the passwd file
+# Kopiera passwd filen
 COPY --from=build-production /etc/passwd /etc/passwd
 
-# Copy the healthcheck binary from the build stage
+# Kopiera healthcheck och applikationen
 COPY --from=build-production /app/healthcheck/healthcheck healthcheck
-
-# Copy the app binary from the build stage
 COPY --from=build-production /app/api-golang api-golang
 
-# Use nonroot user
+# Använd non-root användare
 USER nonroot
 
-# Indicate expected port
+# Ange porten som applikationen ska använda
 EXPOSE 8080
 
 CMD ["/api-golang"]

@@ -14,10 +14,20 @@ build-multiarch:
 	docker buildx build \
 		--platform linux/amd64,linux/arm64,linux/arm/v7 \
 		--secret id=secret.txt,src=local-secret.txt \
-		-t sidpalas/multi-arch-test:latest \
+		-t axellofberg/multi-arch-test:latest \
 		-f Dockerfile.sample \
 		--push \
 		.
+
+.PHONY: build-arm64
+build-arm64:
+	docker buildx build \
+		--platform linux/arm64 \
+		--progress=plain \
+		-t sidpalas/multi-arch-test:arm64 \
+		-f Dockerfile.sample \
+		.
+
 
 .PHONY: run-sample-entrypoint-cmd
 run-sample-entrypoint-cmd: build-sample

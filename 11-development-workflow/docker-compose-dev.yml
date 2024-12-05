@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   client-react-vite:
     image: client-react-vite
@@ -28,7 +27,7 @@ services:
     networks:
       - frontend
     ports:
-      - 80:8080
+      - 70:8080
     restart: unless-stopped
   api-node:
     image: api-node

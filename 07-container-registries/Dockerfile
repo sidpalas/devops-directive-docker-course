@@ -1,2 +1,4 @@
 # Empty dockerfile to demonstrate pushing to registries
-FROM scratch
+FROM alpine:latest
+
+CMD ["echo", "Hello, this is my Docker container!"]

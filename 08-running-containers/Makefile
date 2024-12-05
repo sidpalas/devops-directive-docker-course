@@ -80,7 +80,7 @@ docker-run-all:
 	docker run -d \
 		--name client-react-nginx \
 		--network my-network \
-		-p 80:8080 \
+		-p 70:8080 \
 		--restart unless-stopped \
 		client-react-ngnix
 
