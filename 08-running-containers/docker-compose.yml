@@ -51,7 +51,7 @@ services:
     image: api-golang
     build:
       context: ../05-example-web-application/api-golang/
-      dockerfile: ../../06-building-container-images/api-golang/Dockerfile.6
+      dockerfile: ../../06-building-container-images/api-golang/Dockerfile.8
     init: true
     depends_on:
       - db

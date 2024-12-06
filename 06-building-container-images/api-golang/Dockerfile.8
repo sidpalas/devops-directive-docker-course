@@ -28,6 +28,10 @@ RUN apk add --no-cache git \
 WORKDIR /app
 COPY --from=build /app .
 
+# Testing
+COPY ../../05-example-web-application/api-golang/go.mod ./go.mod
+COPY ../../05-example-web-application/api-golang/go.sum ./go.sum
+
 CMD ["air", "-c", ".air.toml"]
 
 # Build production version of the image
