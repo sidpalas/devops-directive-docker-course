@@ -1,27 +1,26 @@
-# Använd specifik version för stabilitet
-# Bygg en separat stage för att bygga bilden
+# Pin specific version for stability
+# Use separate stage for building image
+# Use debian for easier build utilities
 FROM golang:1.23-alpine AS build
 
-# Installera git för att kunna hämta beroenden
+# Install git to fetch dependencies
 RUN apk add --no-cache git
 
-WORKDIR /app 
+WORKDIR /app
 
-# Kopiera go.mod och go.sum för att installera beroenden (bättre caching)
+# Copy only files required to install dependencies (better layer caching)
 COPY go.mod go.sum ./
 
-# Använd cache mount för att snabba upp installation av existerande beroenden
-RUN --mount=type=cache,target=/go/pkg/mod \
-  --mount=type=cache,target=/root/.cache/go-build \
-  go mod tidy && go mod download
+# Tidy up and download dependencies
+RUN go mod tidy && go mod download
 
-# Kopiera resten av applikationen till /app
+# Copy the rest of the application to /app
 COPY . .
 
-# Bygg dev version av bilden
+# Build dev version of the image
 FROM golang:1.23-alpine AS dev
 
-# Installera Git och verktyg för utveckling
+# Install air for hot reload & delve for debugging
 RUN apk add --no-cache git \
     && go install github.com/air-verse/air@latest \
     && go install github.com/go-delve/delve/cmd/dlv@latest
@@ -31,47 +30,47 @@ COPY --from=build /app .
 
 CMD ["air", "-c", ".air.toml"]
 
-# Bygg produktionsversion av bilden
+# Build production version of the image
 FROM golang:1.23-alpine AS build-production
 
-# Lägg till en användare som inte är root
+# Add non-root user
 RUN adduser -D -u 1001 nonroot
 
 WORKDIR /app
 COPY --from=build /app .
 
-# Kompilera healthcheck
+# Compile healthcheck
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -tags netgo \
   -o healthcheck \
   ./healthcheck/healthcheck.go
 
-# Kompilera huvudapplikationen
+# Compile the main application
 RUN go build \
   -ldflags="-linkmode external -extldflags -static" \
   -tags netgo \
   -o api-golang
 
-# Använd en minimal bild för distribution
+# Use a minimal image for deployment
 FROM scratch
 
-# Sätt gin-läge
+# Set gin mode
 ENV GIN_MODE=release
 
 WORKDIR /
 
-# Kopiera passwd-filen
+# Copy the passwd file
 COPY --from=build-production /etc/passwd /etc/passwd
 
-# Kopiera healthcheck och applikationen
+# Copy healthcheck and the application
 COPY --from=build-production /app/healthcheck/healthcheck healthcheck
 COPY --from=build-production /app/api-golang api-golang
 
-# Använd en användare som inte är root
+# Use non-root user
 USER nonroot
 
-# Ange vilken port applikationen använder
+# Specify the port the application will use
 EXPOSE 8080
 
 CMD ["/api-golang"]
