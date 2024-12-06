@@ -1,37 +1,40 @@
-# Pin specific version for stability
-# Use separate stage for building image
-# Use debian for easier build utilities
+# Använd specifik version för stabilitet
+# Bygg en separat stage för att bygga bilden
 FROM golang:1.23-alpine AS build
+
+# Installera git för att kunna hämta beroenden
+RUN apk add --no-cache git
 
 WORKDIR /app 
 
-# Copy only files required to install dependencies (better layer caching)
+# Kopiera go.mod och go.sum för att installera beroenden (bättre caching)
 COPY go.mod go.sum ./
 
-# Use cache mount to speed up install of existing dependencies
+# Använd cache mount för att snabba upp installation av existerande beroenden
 RUN --mount=type=cache,target=/go/pkg/mod \
   --mount=type=cache,target=/root/.cache/go-build \
-  go mod download
+  go mod tidy && go mod download
 
-# Kopiera resten av koden till /app
+# Kopiera resten av applikationen till /app
 COPY . .
 
-# Skapa dev versionen av bilden
+# Bygg dev version av bilden
 FROM golang:1.23-alpine AS dev
 
-# Installera air för hot reload & delve för debugging
-RUN go install github.com/air-verse/air@latest && \
-    go install github.com/go-delve/delve/cmd/dlv@latest
+# Installera Git och verktyg för utveckling
+RUN apk add --no-cache git \
+    && go install github.com/air-verse/air@latest \
+    && go install github.com/go-delve/delve/cmd/dlv@latest
 
 WORKDIR /app
 COPY --from=build /app .
 
 CMD ["air", "-c", ".air.toml"]
 
-# Skapa production version av bilden
+# Bygg produktionsversion av bilden
 FROM golang:1.23-alpine AS build-production
 
-# Lägg till non-root user
+# Lägg till en användare som inte är root
 RUN adduser -D -u 1001 nonroot
 
 WORKDIR /app
@@ -50,25 +53,25 @@ RUN go build \
   -tags netgo \
   -o api-golang
 
-# Använd en minimal bild för deployment
+# Använd en minimal bild för distribution
 FROM scratch
 
-# Set gin mode
+# Sätt gin-läge
 ENV GIN_MODE=release
 
 WORKDIR /
 
-# Kopiera passwd filen
+# Kopiera passwd-filen
 COPY --from=build-production /etc/passwd /etc/passwd
 
 # Kopiera healthcheck och applikationen
 COPY --from=build-production /app/healthcheck/healthcheck healthcheck
 COPY --from=build-production /app/api-golang api-golang
 
-# Använd non-root användare
+# Använd en användare som inte är root
 USER nonroot
 
-# Ange porten som applikationen ska använda
+# Ange vilken port applikationen använder
 EXPOSE 8080
 
 CMD ["/api-golang"]
