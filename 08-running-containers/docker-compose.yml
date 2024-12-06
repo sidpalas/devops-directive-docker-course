@@ -1,4 +1,4 @@
-ööservices:
+services:
   client-react-vite:
     image: client-react-vite
     build:
