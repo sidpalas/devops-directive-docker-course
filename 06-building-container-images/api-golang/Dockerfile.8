@@ -3,8 +3,8 @@
 # Use debian for easier build utilities
 FROM golang:1.23-alpine AS build
 
-# Install git to fetch dependencies
-RUN apk add --no-cache git
+# Install git and build dependencies to enable CGO
+RUN apk add --no-cache git gcc musl-dev
 
 WORKDIR /app
 
@@ -12,9 +12,7 @@ WORKDIR /app
 COPY go.mod go.sum ./
 
 # Tidy up and download dependencies
-RUN --mount=type=cache,target=/go/pkg/mod \
-  --mount=type=cache,target=/root/.cache/go-build \
-  go mod tidy && go mod download
+RUN go mod tidy && go mod download
 
 # Copy the rest of the application to /app
 COPY . .
@@ -35,14 +33,17 @@ CMD ["air", "-c", ".air.toml"]
 # Build production version of the image
 FROM golang:1.23-alpine AS build-production
 
+# Install build dependencies to enable CGO
+RUN apk add --no-cache gcc musl-dev
+
 # Add non-root user
 RUN adduser -D -u 1001 nonroot
 
 WORKDIR /app
 COPY --from=build /app .
 
-# Kontrollera att `healthcheck`-katalogen och filerna finns
-RUN ls /app/healthcheck
+# Enable CGO for static linking
+ENV CGO_ENABLED=1
 
 # Compile healthcheck
 RUN go build \
