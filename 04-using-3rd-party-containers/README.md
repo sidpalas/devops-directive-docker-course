@@ -287,6 +287,7 @@ https://hub.docker.com/_/mysql
 docker run -d --rm \
   -v mysqldata:/var/lib/mysql \
   -e MYSQL_ROOT_PASSWORD=foobarbaz \
+  -p 3306:3306 \
   mysql:8.0.32
 
 # With custom conf.d
@@ -294,6 +295,7 @@ docker run -d --rm \
   -v mysqldata:/var/lib/mysql \
   -v ${PWD}/conf.d:/etc/mysql/conf.d \
   -e MYSQL_ROOT_PASSWORD=foobarbaz \
+  -p 3306:3306 \
   mysql:8.0.32
 ```
 
