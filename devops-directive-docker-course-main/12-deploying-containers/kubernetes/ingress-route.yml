@@ -1,0 +1,45 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: primary
+spec:
+  entryPoints:
+    - web
+  routes:
+  - kind: Rule
+    match: Host(`docker-course-kubernetes.devopsdirective.com`)
+    services:                       
+    - kind: Service
+      name: client-react-nginx
+      namespace: default
+      port: 8080
+      scheme: http
+  - kind: Rule
+    match: Host(`docker-course-kubernetes.devopsdirective.com`) && PathPrefix(`/api/node`)
+    middlewares:
+    - name: strip-api-prefixes
+    services:
+    - kind: Service
+      name: api-node
+      port: 3000
+      scheme: http
+  - kind: Rule
+    match: Host(`docker-course-kubernetes.devopsdirective.com`) && PathPrefix(`/api/golang`)
+    middlewares:
+    - name: strip-api-prefixes
+    services:
+    - kind: Service
+      name: api-golang
+      port: 8080
+      scheme: http
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: strip-api-prefixes
+spec:
+  stripPrefix:
+    forceSlash: false
+    prefixes:
+      - /api/node
+      - /api/golang

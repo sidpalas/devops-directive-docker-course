@@ -1,0 +1,79 @@
+version: '3.7'
+
+services:
+  client-react-nginx:
+    image: sidpalas/devops-directive-docker-course-client-react-nginx:5
+    networks:
+      - frontend
+    ports:
+      - 80:8080
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  api-node:
+    image: sidpalas/devops-directive-docker-course-api-node:9
+    read_only: true
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 3000:3000
+    init: true
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "/usr/src/app/healthcheck.js"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  api-golang:
+    image: sidpalas/devops-directive-docker-course-api-golang:8
+    read_only: true
+    networks:
+      - frontend
+      - backend
+    init: true
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "/healthcheck"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+  db:
+    image: postgres:15.1-alpine
+    networks:
+      - backend
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - PGUSER=postgres
+      - POSTGRES_PASSWORD=foobarbaz
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
+
+networks:
+  frontend:
+  backend:

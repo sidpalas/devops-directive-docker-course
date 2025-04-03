@@ -1,0 +1,11 @@
+# Pin specific version for stability
+# Use debian for easier build utilities
+FROM golang:1.19-bullseye AS build
+
+WORKDIR /app 
+
+COPY . .
+
+RUN go mod download
+
+CMD ["go", "run", "./main.go"]
