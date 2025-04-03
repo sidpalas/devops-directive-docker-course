@@ -1,0 +1,80 @@
+services:
+  client-react-vite:
+    image: client-react-vite
+    build:
+      context: ../05-example-web-application/client-react/
+      dockerfile: ../../06-building-container-images/client-react/Dockerfile.3
+    init: true
+    volumes:
+      - ./client-react/vite.config.js:/usr/src/app/vite.config.js
+    networks:
+      - frontend
+    ports:
+      - 5173:5173
+  client-react-nginx:
+    labels:
+      shipyard.primary-route: true
+      shipyard.route: '/'
+    image: client-react-nginx
+    build:
+      context: ../05-example-web-application/client-react/
+      dockerfile: ../../06-building-container-images/client-react/Dockerfile.5
+    init: true
+    networks:
+      - frontend
+    ports:
+      - 80:8080
+    restart: unless-stopped
+  api-node:
+    labels:
+      shipyard.route: '/api/node/'
+      shipyard.route.rewrite: true
+    image: api-node
+    build:
+      context: ../05-example-web-application/api-node/
+      dockerfile: ../../06-building-container-images/api-node/Dockerfile.7
+    init: true
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+  api-golang:
+    labels:
+      shipyard.route: '/api/golang/'
+      shipyard.route.rewrite: true
+    image: api-golang
+    build:
+      context: ../05-example-web-application/api-golang/
+      dockerfile: ../../06-building-container-images/api-golang/Dockerfile.6
+    init: true
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:foobarbaz@db:5432/postgres
+    networks:
+      - frontend
+      - backend
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+  db:
+    image: postgres:15.1-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=foobarbaz
+    networks:
+      - backend
+    ports:
+      - 5432:5432
+volumes:
+  pgdata:
+networks:
+  frontend:
+  backend:

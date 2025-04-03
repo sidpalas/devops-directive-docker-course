@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-golang
+spec:
+  selector:
+    app: api-golang
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-golang
+  labels:
+    app: api-golang
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-golang
+  template:
+    metadata:
+      labels:
+        app: api-golang
+    spec:
+      containers:
+        - name: api-golang
+          image: sidpalas/devops-directive-docker-course-api-golang:8
+          env:
+            - name: PORT
+              value: "8080"
+          envFrom:
+            - secretRef:
+                name: database-url
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: 8080
+          resources:
+            limits:
+              memory: "100Mi"
+            requests:
+              memory: "100Mi"
+              cpu: "50m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
