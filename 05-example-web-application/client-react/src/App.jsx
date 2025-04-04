@@ -27,7 +27,7 @@ function CurrentTime(props) {
     <div className="App">
       <p>---</p>
       <p>API: {data.api}</p>
-      <p>Time from Database postgres: {data.now}</p>
+      <p>Time from new update: {data.now}</p>
       <div>{isFetching ? "Updating..." : ""}</div>
     </div>
   )
