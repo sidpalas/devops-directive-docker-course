@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, v1 ]
+  pull_request:
+    branches: [ master, v1 ]
+
+jobs:
+
+  test:
+    name: Test
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        go-version: [1.18, 1.19]
+
+    steps:
+
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go-version }}
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Test
+      run: go test -v -race ./...

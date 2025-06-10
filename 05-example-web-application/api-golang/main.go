@@ -38,7 +38,7 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		tm = database.GetTime(c)
 		c.JSON(200, gin.H{
-			"api": "golang",
+			"api": "golang-live",
 			"now": tm,
 		})
 	})

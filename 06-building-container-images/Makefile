@@ -36,7 +36,7 @@ run-sample-entrypoint-cmd: build-sample
 
 	@echo "##############################"
 	@echo "Overriden entrypoint with arguments (CMD is ignored):"
-	docker run --entrypoint echo sample "Hey Team 👋 (Overriden entrypoint + arguments)"
+	docker run --entrypoint echo sample "Hey Team (Overriden entrypoint + arguments)"
 
 define ENTRYPOINT_CMD_DESCRIPTION
 
