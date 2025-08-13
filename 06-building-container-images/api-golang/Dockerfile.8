@@ -16,8 +16,8 @@ RUN --mount=type=cache,target=/go/pkg/mod \
 FROM build-base AS dev
 
 # Install air for hot reload & delve for debugging
-RUN go install github.com/cosmtrek/air@latest && \
-  go install github.com/go-delve/delve/cmd/dlv@latest
+RUN go install github.com/cosmtrek/air@v1.43.0 && \
+  go install github.com/go-delve/delve/cmd/dlv@v1.20.2
 
 COPY . .
 
