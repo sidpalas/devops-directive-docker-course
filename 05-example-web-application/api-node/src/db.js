@@ -1,30 +1,34 @@
-const fs = require('fs');
+const { Pool } = require("pg");
+const { DateTime } = require("luxon");
+const fs = require("fs");
 
-const { Pool } = require('pg');
-
-databaseUrl =
+const databaseUrl =
   process.env.DATABASE_URL ||
-  fs.readFileSync(process.env.DATABASE_URL_FILE, 'utf8');
+  fs.readFileSync(process.env.DATABASE_URL_FILE, "utf8");
 
-const pool = new Pool({
-  connectionString: databaseUrl,
-});
+const pool = new Pool({ connectionString: databaseUrl });
 
-// the pool will emit an error on behalf of any idle clients
-// it contains if a backend error or network partition happens
-pool.on('error', (err, client) => {
-  console.error('Unexpected error on idle client', err);
+pool.on("error", (err) => {
+  console.error("Unexpected error on idle client", err);
   process.exit(-1);
 });
 
-// async/await - check out a client
-const getDateTime = async () => {
+const getDateTime = async (clientTimeZone = "Africa/Harare") => {
   const client = await pool.connect();
   try {
-    const res = await client.query('SELECT NOW() as now;');
-    return res.rows[0];
+    const res = await client.query("SELECT NOW() as now;");
+    const utcTime = res.rows[0].now;
+    const localTime = DateTime.fromJSDate(utcTime).setZone(clientTimeZone);
+    return {
+      api: "node",
+      now: localTime.toISO({
+        includeOffset: true,
+        suppressMilliseconds: false,
+      }),
+    };
   } catch (err) {
-    console.log(err.stack);
+    console.error(err.stack);
+    return { error: "Failed to fetch time" };
   } finally {
     client.release();
   }
