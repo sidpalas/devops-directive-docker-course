@@ -198,7 +198,7 @@ cat /var/lib/docker/volumes/my-volume/_data/hello.txt # Woohoo! we found our dat
 This approach can then be used to mount a volume at the known path where a program persists its data:
 ```bash
 # Create a container from the postgres container image and mount its known storage path into a volume named pgdata
-docker run -it --rm -v pgdata:/var/lib/postgresql/data -e POSTGRES_PASSWORD=foobarbaz postgres:15.1-alpine
+docker run -it --rm -p 5432:5432 -v pgdata:/var/lib/postgresql/data -e POSTGRES_PASSWORD=foobarbaz postgres:15.1-alpine
 ```
 
 #### ii. Bind Mounts
