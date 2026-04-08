@@ -318,7 +318,7 @@ docker run -d --rm \
 https://hub.docker.com/_/elasticsearch
 ```bash
 docker run -d --rm \
-  -v elasticsearchdata:/usr/share/elasticsearch/data
+  -v elasticsearchdata:/usr/share/elasticsearch/data \
   -e ELASTIC_PASSWORD=foobarbaz \
   -e "discovery.type=single-node" \
   -p 9200:9200 \
